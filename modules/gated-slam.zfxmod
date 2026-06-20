@@ -3,6 +3,103 @@
   "name": "Gated Slam",
   "category": "Reverb",
   "desc": "Hard compression into a gated reverb for big drums.",
+  "overview": "The 80s drum sound: hard compression maximises the body, then a gated reverb slams a big tail that cuts off abruptly. Snares and toms hit like a cannon.",
+  "blocks": [
+    {
+      "type": "Compressor",
+      "category": "Dynamics",
+      "desc": "Peak-following compressor: tracks the input envelope with Attack/Release ballistics and, above Threshold, reduces gain by the set Ratio, with Makeup to restore level. Fast attack tames transients while slow release glues sustained material. A clean general-purpose dynamics stage - see the analog pack (FET, Opto, VariMu) for coloured compression.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Threshold",
+          "value": -18.0,
+          "min": -60.0,
+          "max": 0.0,
+          "def": -18.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Ratio",
+          "value": 4.0,
+          "min": 1.0,
+          "max": 20.0,
+          "def": 4.0,
+          "unit": ""
+        },
+        {
+          "name": "Attack",
+          "value": 5.0,
+          "min": 0.100000001490116,
+          "max": 100.0,
+          "def": 5.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Release",
+          "value": 80.0,
+          "min": 1.0,
+          "max": 500.0,
+          "def": 80.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Makeup",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "dB"
+        }
+      ]
+    },
+    {
+      "type": "GatedVerb",
+      "category": "Reverb",
+      "desc": "Reverb whose wet tail is muted by a fast envelope-driven gate, so the reverb only passes while the dry input stays above a threshold. Size sets the room length and Damp the high-frequency decay, Threshold sets the level below which the tail is cut, and Mix blends the gated reverb against the dry signal. Reproduces the abrupt, chopped-off reverb of 80s drum production.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Size",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Damp",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Threshold",
+          "value": -30.0,
+          "min": -60.0,
+          "max": 0.0,
+          "def": -30.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Mix",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

@@ -3,6 +3,95 @@
   "name": "Comp Limit",
   "category": "Dynamics",
   "desc": "Series compressor and limiter for a controlled bus.",
+  "overview": "A simple, reliable two-stage dynamics chain: a compressor does the musical level control and a limiter catches the peaks. A safe, transparent bus or master controller.",
+  "blocks": [
+    {
+      "type": "Compressor",
+      "category": "Dynamics",
+      "desc": "Peak-following compressor: tracks the input envelope with Attack/Release ballistics and, above Threshold, reduces gain by the set Ratio, with Makeup to restore level. Fast attack tames transients while slow release glues sustained material. A clean general-purpose dynamics stage - see the analog pack (FET, Opto, VariMu) for coloured compression.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Threshold",
+          "value": -18.0,
+          "min": -60.0,
+          "max": 0.0,
+          "def": -18.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Ratio",
+          "value": 4.0,
+          "min": 1.0,
+          "max": 20.0,
+          "def": 4.0,
+          "unit": ""
+        },
+        {
+          "name": "Attack",
+          "value": 5.0,
+          "min": 0.100000001490116,
+          "max": 100.0,
+          "def": 5.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Release",
+          "value": 80.0,
+          "min": 1.0,
+          "max": 500.0,
+          "def": 80.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Makeup",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "dB"
+        }
+      ]
+    },
+    {
+      "type": "Limiter",
+      "category": "Dynamics",
+      "desc": "Brick-wall peak limiter: instantly clamps gain so peaks never exceed Threshold, then releases smoothly back to unity over Release, with Output trimming the post-limit level. Set Threshold as the ceiling and drive the input for transparent loudness. See Maximizer for loudness-optimized limiting.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Threshold",
+          "value": -3.0,
+          "min": -24.0,
+          "max": 0.0,
+          "def": -3.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Release",
+          "value": 50.0,
+          "min": 1.0,
+          "max": 500.0,
+          "def": 50.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Output",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

@@ -3,6 +3,95 @@
   "name": "Grain Cloud",
   "category": "Delay",
   "desc": "Granular delay into a grain reverb for textures.",
+  "overview": "Two granular engines in series: a grain delay shatters the input into a cloud of tiny repeats, then a granular reverb diffuses them into an evolving texture. A sound-design machine for ambient and experimental work.",
+  "blocks": [
+    {
+      "type": "GrainDelay",
+      "category": "Delay",
+      "desc": "Granular feedback delay that reads overlapping windowed grains from the delay line, pitch-shifting them and scattering their read positions. Time sets the base tap (10-8000 ms), Pitch transposes the grains +/-12 semitones, and Scatter randomizes each grain's offset for a smeared, diffuse cloud. Mix sets dry/wet; the shifted grains are fed back at reduced gain, so repeats drift in pitch and position.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Time",
+          "value": 300.0,
+          "min": 10.0,
+          "max": 8000.0,
+          "def": 300.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Pitch",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "st"
+        },
+        {
+          "name": "Scatter",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "GrainVerb",
+      "category": "Reverb",
+      "desc": "Granular reverb that windows the input with a moving Hann grain and injects it into a 4-line feedback delay network for diffusion. Size scales the four delay lengths up to 6x for longer tails, Grain sets the grain rate in milliseconds, and Damp applies a low-pass in each feedback line to darken successive reflections. Mix blends the diffused tail against the dry input for a smeared, granular ambience.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Size",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Grain",
+          "value": 30.0,
+          "min": 5.0,
+          "max": 100.0,
+          "def": 30.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Damp",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

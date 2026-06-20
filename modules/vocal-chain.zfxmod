@@ -3,6 +3,138 @@
   "name": "Vocal Chain",
   "category": "Dynamics",
   "desc": "De-ess, compress and EQ for a finished vocal.",
+  "overview": "A complete front-to-back vocal channel strip: a de-esser tames harsh sibilance first, a compressor evens out the level and adds presence, and a parametric EQ shapes the final tone. Drop it on any vocal take for an instantly mixed sound.",
+  "blocks": [
+    {
+      "type": "DeEsser",
+      "category": "Dynamics",
+      "desc": "Tames sibilance by splitting off a high band with a one-pole low-pass, tracking its level with a fast-attack envelope, and applying gain reduction to that band only when it crosses the threshold before recombining it with the lows. Freq sets the sibilance band, Threshold sets where reduction begins, Amount scales how hard the high band is pulled down, and Mix sets dry/wet. Because only the highs are compressed, it removes harsh esses without dulling the rest of the signal.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Freq",
+          "value": 6000.0,
+          "min": 2000.0,
+          "max": 12000.0,
+          "def": 6000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Threshold",
+          "value": -24.0,
+          "min": -60.0,
+          "max": 0.0,
+          "def": -24.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Amount",
+          "value": 0.699999988079071,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.699999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Compressor",
+      "category": "Dynamics",
+      "desc": "Peak-following compressor: tracks the input envelope with Attack/Release ballistics and, above Threshold, reduces gain by the set Ratio, with Makeup to restore level. Fast attack tames transients while slow release glues sustained material. A clean general-purpose dynamics stage - see the analog pack (FET, Opto, VariMu) for coloured compression.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Threshold",
+          "value": -18.0,
+          "min": -60.0,
+          "max": 0.0,
+          "def": -18.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Ratio",
+          "value": 4.0,
+          "min": 1.0,
+          "max": 20.0,
+          "def": 4.0,
+          "unit": ""
+        },
+        {
+          "name": "Attack",
+          "value": 5.0,
+          "min": 0.100000001490116,
+          "max": 100.0,
+          "def": 5.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Release",
+          "value": 80.0,
+          "min": 1.0,
+          "max": 500.0,
+          "def": 80.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Makeup",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "dB"
+        }
+      ]
+    },
+    {
+      "type": "EQ",
+      "category": "Filter",
+      "desc": "Single parametric peaking EQ band (RBJ biquad): Gain boosts or cuts a bell centred at Freq, with Q setting its width - narrow for surgical notches, wide for broad tone shaping. Chain several for a full parametric EQ. See GraphicEQ for fixed bands and the analog pack (Pultec/Neve/SSL) for coloured curves.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Freq",
+          "value": 1000.0,
+          "min": 30.0,
+          "max": 18000.0,
+          "def": 1000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Gain",
+          "value": 0.0,
+          "min": -18.0,
+          "max": 18.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Q",
+          "value": 1.0,
+          "min": 0.300000011920929,
+          "max": 8.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

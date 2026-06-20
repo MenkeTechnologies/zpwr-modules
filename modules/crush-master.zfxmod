@@ -3,6 +3,103 @@
   "name": "Crush Master",
   "category": "Dynamics",
   "desc": "OTT-style multiband upward compression and a limiter.",
+  "overview": "The modern loud master: aggressive OTT-style multiband upward/downward compression flattens the dynamics and brings up detail, then a brickwall limiter sets the ceiling. Use sparingly - this is a finisher.",
+  "blocks": [
+    {
+      "type": "OTT",
+      "category": "Dynamics",
+      "desc": "Over-the-top multiband compressor (Xfer OTT-style): splits the signal into low / mid / high bands and applies BOTH downward and upward compression to each at once - loud parts are pulled down and quiet detail is pushed up - for the dense, controlled, minimal-dynamic-range sound on modern EDM / dubstep / future-bass synths and drums. Depth sets how hard the up + down compression bites (the OTT % knob), Time the attack/release across all bands (fast = tight, slow = more transient), Low / Mid / High trim each band's output in dB, and Mix blends against dry. Unlike MultiComp / MBDynamics this also compresses upward (raises the quiet parts), which is what gives OTT its signature.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Depth",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Time",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Low",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Mid",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "High",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Limiter",
+      "category": "Dynamics",
+      "desc": "Brick-wall peak limiter: instantly clamps gain so peaks never exceed Threshold, then releases smoothly back to unity over Release, with Output trimming the post-limit level. Set Threshold as the ceiling and drive the input for transparent loudness. See Maximizer for loudness-optimized limiting.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Threshold",
+          "value": -3.0,
+          "min": -24.0,
+          "max": 0.0,
+          "def": -3.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Release",
+          "value": 50.0,
+          "min": 1.0,
+          "max": 500.0,
+          "def": 50.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Output",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

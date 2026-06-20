@@ -3,6 +3,95 @@
   "name": "Exciter Polish",
   "category": "Distortion",
   "desc": "High-frequency exciter into a gentle compressor.",
+  "overview": "A mastering-style sweetener: a high-frequency exciter adds air and sparkle, then a gentle compressor smooths it into the mix. Use on a full mix or bus for that finished, expensive sheen.",
+  "blocks": [
+    {
+      "type": "Exciter",
+      "category": "Distortion",
+      "desc": "Harmonic exciter: splits off the band above Freq, generates new upper harmonics from it with a tanh Drive, and blends them back via Amount for added air and presence. Subtle settings add sheen and intelligibility without raising broadband level. Most effective on dull vocals, drums and full mixes.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Freq",
+          "value": 3000.0,
+          "min": 500.0,
+          "max": 12000.0,
+          "def": 3000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Drive",
+          "value": 4.0,
+          "min": 1.0,
+          "max": 20.0,
+          "def": 4.0,
+          "unit": ""
+        },
+        {
+          "name": "Amount",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Compressor",
+      "category": "Dynamics",
+      "desc": "Peak-following compressor: tracks the input envelope with Attack/Release ballistics and, above Threshold, reduces gain by the set Ratio, with Makeup to restore level. Fast attack tames transients while slow release glues sustained material. A clean general-purpose dynamics stage - see the analog pack (FET, Opto, VariMu) for coloured compression.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Threshold",
+          "value": -18.0,
+          "min": -60.0,
+          "max": 0.0,
+          "def": -18.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Ratio",
+          "value": 4.0,
+          "min": 1.0,
+          "max": 20.0,
+          "def": 4.0,
+          "unit": ""
+        },
+        {
+          "name": "Attack",
+          "value": 5.0,
+          "min": 0.100000001490116,
+          "max": 100.0,
+          "def": 5.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Release",
+          "value": 80.0,
+          "min": 1.0,
+          "max": 500.0,
+          "def": 80.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Makeup",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "dB"
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

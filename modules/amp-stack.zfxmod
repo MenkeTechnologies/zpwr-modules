@@ -3,6 +3,130 @@
   "name": "Amp Stack",
   "category": "Distortion",
   "desc": "Fuzz into an amp sim and cab for a full guitar stack.",
+  "overview": "A complete guitar rig in one block: a fuzz pedal slams the front of an amp simulator, which then runs into a speaker cabinet model. Plug a DI guitar straight in and get a miked-up stack - swap the fuzz drive for everything from edge-of-breakup to wall-of-noise.",
+  "blocks": [
+    {
+      "type": "Fuzz",
+      "category": "Distortion",
+      "desc": "High-gain fuzz: heavy drive soft-saturates then hard-clips into a square wave for a thick, sustaining buzz, with a Tone low-pass to tame the fizz and Level to set output. Mix blends dry/wet. Aggressive and compressed - see the BigMuff and FuzzFace analog models for circuit-specific fuzz voicings.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Drive",
+          "value": 24.0,
+          "min": 0.0,
+          "max": 48.0,
+          "def": 24.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Tone",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Level",
+          "value": -8.0,
+          "min": -24.0,
+          "max": 6.0,
+          "def": -8.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "AmpSim",
+      "category": "Distortion",
+      "desc": "Guitar amp model chaining an asymmetric tanh preamp, a tone-tilt filter and a speaker-cabinet low-pass with output compensation. Drive sets preamp gain (0-48 dB) into the asymmetric clipper, Tone tilts between darker and brighter response, and Cab sets the cabinet cutoff (brighter at higher values). Mix blends the modeled tone against the dry; ranges from edge-of-breakup grit to saturated lead tones.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Drive",
+          "value": 18.0,
+          "min": 0.0,
+          "max": 48.0,
+          "def": 18.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Tone",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Cab",
+          "value": 0.699999988079071,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.699999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "CabSim",
+      "category": "Distortion",
+      "desc": "Generic speaker-cabinet voicing: a 90 Hz high-pass trims sub rumble, a high-frequency rolloff tames fizz, and a peak around 1.5 kHz adds cabinet body, all blended by Mix. Body sets how much of the resonant midrange peak is added and Bright raises the rolloff corner for a more open top end. A lightweight tone-shaping voicing for amp signals, not an impulse-response capture of a real cabinet.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Body",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Bright",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

@@ -3,6 +3,87 @@
   "name": "Formant Vox",
   "category": "Filter",
   "desc": "Vowel formant filter into a chorus for vocal pads.",
+  "overview": "A formant filter imposes vowel-like resonances (ah/ee/oh) on any source, then a chorus widens it into a choir-like pad. Turns synths and drones into talking, vocal textures.",
+  "blocks": [
+    {
+      "type": "Formant",
+      "category": "Filter",
+      "desc": "Morphing vowel filter: three parallel band-pass resonators tuned to formant frequencies are swept continuously across the A-E-I-O-U vowels by Vowel, with Q setting the formant sharpness and Mix the blend. Produces talking, vocal timbres. Sweep Vowel with an LFO or envelope for a wah-like vowel morph.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Vowel",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 4.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Q",
+          "value": 10.0,
+          "min": 2.0,
+          "max": 20.0,
+          "def": 10.0,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Chorus",
+      "category": "Delay",
+      "desc": "Single-voice chorus: an LFO (Rate, Depth) modulates a short base Delay (1-30 ms) and the detuned copy is blended back via Mix to thicken and widen the source. Short delays with light depth give subtle doubling; longer and deeper settings approach vibrato and flange. See Ensemble for a three-voice string-machine variant.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Rate",
+          "value": 0.800000011920929,
+          "min": 0.050000000745058,
+          "max": 8.0,
+          "def": 0.800000011920929,
+          "unit": "Hz"
+        },
+        {
+          "name": "Depth",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Delay",
+          "value": 12.0,
+          "min": 1.0,
+          "max": 30.0,
+          "def": 12.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Mix",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

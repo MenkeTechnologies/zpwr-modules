@@ -3,6 +3,95 @@
   "name": "Shimmer Wash",
   "category": "Reverb",
   "desc": "Plate reverb into a freeze verb for an endless wash.",
+  "overview": "A lush ambient pad-maker: a bright plate reverb feeds a freeze reverb that captures and sustains the tail into an endless wash. Perfect for ambient guitar, drones and cinematic beds.",
+  "blocks": [
+    {
+      "type": "Plate",
+      "category": "Reverb",
+      "desc": "Plate reverb: the input runs through four series allpass diffusers and then into four parallel damped feedback combs that are summed for the wet tail. Decay sets the comb feedback (0 to 0.95), Damp is a one-pole low-pass inside the feedback that darkens later reflections, Size scales the delay-line lengths, and Mix blends dry/wet. Dense, smooth metallic decay suited to plates and tight ambiences.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Size",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Decay",
+          "value": 0.699999988079071,
+          "min": 0.0,
+          "max": 0.949999988079071,
+          "def": 0.699999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Damp",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "FreezeVerb",
+      "category": "Reverb",
+      "desc": "Reverb that can latch into an infinite-hold freeze mode, sustaining the current tail indefinitely instead of decaying. Size sets the room length and Damp the high-frequency decay, Freeze above its midpoint engages the infinite hold, and Mix blends the reverb against the dry signal. Use the freeze to build sustained drones and pads from a single moment of input.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Size",
+          "value": 0.699999988079071,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.699999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Damp",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        },
+        {
+          "name": "Freeze",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

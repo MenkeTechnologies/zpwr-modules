@@ -3,6 +3,87 @@
   "name": "Duck Verb",
   "category": "Reverb",
   "desc": "Sidechain-ducked reverb that breathes with the input.",
+  "overview": "A reverb that ducks out of the way while you play and blooms in the gaps, kept tidy by a following EQ. The tail never clutters the dry signal - ideal for busy vocals and lead lines.",
+  "blocks": [
+    {
+      "type": "DuckVerb",
+      "category": "Reverb",
+      "desc": "Reverb whose wet signal is attenuated by an envelope follower tracking the dry input, so the tail dips while you play and swells back in the gaps. Size sets the room length and Damp the high-frequency decay, Duck sets how strongly the dry level suppresses the wet, and Mix blends the ducked reverb against the dry signal. Keeps the reverb from washing out a busy performance while preserving the tail between phrases.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Size",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Damp",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Duck",
+          "value": 0.699999988079071,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.699999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "EQ",
+      "category": "Filter",
+      "desc": "Single parametric peaking EQ band (RBJ biquad): Gain boosts or cuts a bell centred at Freq, with Q setting its width - narrow for surgical notches, wide for broad tone shaping. Chain several for a full parametric EQ. See GraphicEQ for fixed bands and the analog pack (Pultec/Neve/SSL) for coloured curves.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Freq",
+          "value": 1000.0,
+          "min": 30.0,
+          "max": 18000.0,
+          "def": 1000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Gain",
+          "value": 0.0,
+          "min": -18.0,
+          "max": 18.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Q",
+          "value": 1.0,
+          "min": 0.300000011920929,
+          "max": 8.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

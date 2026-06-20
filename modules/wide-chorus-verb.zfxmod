@@ -3,6 +3,95 @@
   "name": "Wide Chorus Verb",
   "category": "Modulation",
   "desc": "Ensemble chorus feeding a modulated reverb for width.",
+  "overview": "An ensemble chorus thickens and widens the signal before a modulated reverb smears it into a shimmering stereo field. Instant lushness for pads, cleans and synths that need to fill the mix.",
+  "blocks": [
+    {
+      "type": "Ensemble",
+      "category": "Delay",
+      "desc": "Three-voice string-machine chorus: one LFO modulates three delay taps at evenly spread phases, summing into a lush, wide thickening richer than the single-voice Chorus. Rate and Depth set the swirl and Mix the blend. Classic for pads, strings and synth-brass.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Rate",
+          "value": 0.600000023841858,
+          "min": 0.050000000745058,
+          "max": 4.0,
+          "def": 0.600000023841858,
+          "unit": "Hz"
+        },
+        {
+          "name": "Depth",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "ModVerb",
+      "category": "Reverb",
+      "desc": "Reverb whose room size is continuously modulated by a sine LFO, detuning the tail for a chorused, shimmering character. Size sets the base room length and Damp the high-frequency decay, Rate sets the LFO speed (0.05-5 Hz) and Depth how far it sweeps the size, and Mix blends the moving reverb against the dry signal. Adds motion and width to otherwise static reverb tails.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Size",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Damp",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Rate",
+          "value": 0.5,
+          "min": 0.050000000745058,
+          "max": 5.0,
+          "def": 0.5,
+          "unit": "Hz"
+        },
+        {
+          "name": "Depth",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

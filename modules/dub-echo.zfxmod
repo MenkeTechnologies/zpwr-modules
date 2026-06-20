@@ -3,6 +3,119 @@
   "name": "Dub Echo",
   "category": "Delay",
   "desc": "Filtered dub delay with feedback saturation.",
+  "overview": "A dub-style delay whose feedback is saturated by a drive stage, so repeats darken and grow gritty as they decay - the analog delay falling-apart character. Sync it to tempo for reggae and dub throws.",
+  "blocks": [
+    {
+      "type": "DubDelay",
+      "category": "Delay",
+      "desc": "Dub-techno echo: a feedback delay whose repeats are progressively band-limited and tape-saturated inside the loop, so each echo gets darker, warmer and more degraded - the endless, dubby Basic-Channel chord-stab echo of dub techno and dub house. Time sets the delay, Feedback how many repeats (high = near-infinite), Tone darkens each repeat (low-pass in the loop), Drive the in-loop tape saturation, and Mix the wet/dry blend. Long Time + high Feedback + low Tone gives the classic sinking dub tail. Distinct from the clean Delay and the wow/flutter TapeDelay - the feedback path is filtered and saturated.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Time",
+          "value": 375.0,
+          "min": 50.0,
+          "max": 1000.0,
+          "def": 375.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Feedback",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 0.949999988079071,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Tone",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Drive",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Drive",
+      "category": "Distortion",
+      "desc": "Waveshaping overdrive with three curves (Type: tanh soft-clip, sine fold, or hard clip) driven by up to 48 dB of gain plus a Bias offset for even-harmonic asymmetry. A post Tone low-pass tames fizz, Mix blends dry/wet, and Output trims the final level. Spans subtle warmth to aggressive distortion depending on Drive and curve.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Drive",
+          "value": 12.0,
+          "min": 0.0,
+          "max": 48.0,
+          "def": 12.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Output",
+          "value": -6.0,
+          "min": -24.0,
+          "max": 6.0,
+          "def": -6.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Bias",
+          "value": 0.0,
+          "min": -1.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Tone",
+          "value": 18000.0,
+          "min": 200.0,
+          "max": 18000.0,
+          "def": 18000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        },
+        {
+          "name": "Type",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

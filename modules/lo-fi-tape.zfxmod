@@ -3,6 +3,154 @@
   "name": "Lo-Fi Tape",
   "category": "Distortion",
   "desc": "Bitcrush, drive and a filtered delay for dusty character.",
+  "overview": "Vintage degradation in three stages: bit reduction for digital grit, drive for warmth, and a filtered delay for wow-and-flutter slap. Great for lo-fi beats, dusty keys and retro textures.",
+  "blocks": [
+    {
+      "type": "Bitcrush",
+      "category": "Distortion",
+      "desc": "Digital degradation: Bits quantizes the amplitude to 2^Bits levels (quantization noise) while Downsample holds each sample for N frames (sample-rate reduction and aliasing). Mix blends against the dry signal. Low Bits gives gritty lo-fi crunch; high Downsample adds metallic aliasing for retro and 8-bit textures.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Bits",
+          "value": 8.0,
+          "min": 1.0,
+          "max": 16.0,
+          "def": 8.0,
+          "unit": ""
+        },
+        {
+          "name": "Downsample",
+          "value": 4.0,
+          "min": 1.0,
+          "max": 64.0,
+          "def": 4.0,
+          "unit": "x"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Drive",
+      "category": "Distortion",
+      "desc": "Waveshaping overdrive with three curves (Type: tanh soft-clip, sine fold, or hard clip) driven by up to 48 dB of gain plus a Bias offset for even-harmonic asymmetry. A post Tone low-pass tames fizz, Mix blends dry/wet, and Output trims the final level. Spans subtle warmth to aggressive distortion depending on Drive and curve.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Drive",
+          "value": 12.0,
+          "min": 0.0,
+          "max": 48.0,
+          "def": 12.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Output",
+          "value": -6.0,
+          "min": -24.0,
+          "max": 6.0,
+          "def": -6.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Bias",
+          "value": 0.0,
+          "min": -1.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Tone",
+          "value": 18000.0,
+          "min": 200.0,
+          "max": 18000.0,
+          "def": 18000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        },
+        {
+          "name": "Type",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "FilterDelay",
+      "category": "Delay",
+      "desc": "Filtered multi-tap delay (Ableton Filter Delay-style): three delay taps at spreading times, each band-passed at Color before feedback, so the echoes are tuned and coloured rather than full-range. Time sets the first tap, Spread the spacing of the other two, Color the band-pass centre, Feedback the regeneration, and Mix the wet blend. (Mono sum of the three taps; the device's L/C/R panning needs a stereo rack.)",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Time",
+          "value": 250.0,
+          "min": 1.0,
+          "max": 8000.0,
+          "def": 250.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Spread",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Color",
+          "value": 1200.0,
+          "min": 100.0,
+          "max": 6000.0,
+          "def": 1200.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Feedback",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 0.899999976158142,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

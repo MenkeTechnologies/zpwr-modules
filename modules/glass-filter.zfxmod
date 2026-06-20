@@ -3,6 +3,114 @@
   "name": "Glass Filter",
   "category": "Filter",
   "desc": "Resonant filter sweep into a graphic EQ tilt.",
+  "overview": "A resonant state-variable filter sculpts the body and adds vocal resonance, then a graphic EQ tilts the overall balance. Sweep the cutoff for risers, builds and glassy synth textures.",
+  "blocks": [
+    {
+      "type": "Filter",
+      "category": "Filter",
+      "desc": "Multimode state-variable (TPT) filter switchable between low-pass, high-pass and band-pass via Mode. Cutoff tracks an exponential mod input (in 3) scaled by Mod in octaves, while Reso sets the Q up to self-oscillation and an optional pre-Drive (tanh) dirties the resonance. Mix blends the filtered result back against the dry signal.",
+      "tech": "physical",
+      "ins": [
+        "Audio",
+        "Reso Mod",
+        "Cutoff Mod"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Cutoff",
+          "value": 1000.0,
+          "min": 20.0,
+          "max": 20000.0,
+          "def": 1000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Reso",
+          "value": 0.699999988079071,
+          "min": 0.100000001490116,
+          "max": 10.0,
+          "def": 0.699999988079071,
+          "unit": "Q"
+        },
+        {
+          "name": "Mode",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Mod",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 4.0,
+          "def": 0.0,
+          "unit": "oct"
+        },
+        {
+          "name": "Drive",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "GraphicEQ",
+      "category": "Filter",
+      "desc": "Three-band graphic EQ: one-pole filters at 250 Hz and 4 kHz split the input into low, mid and high bands, each scaled by its own +/-12 dB gain and summed back. Low, Mid and High set the per-band gain in dB and Mix blends against dry. A simple tonal shaping tool for broad low/mid/high balance rather than surgical correction.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Low",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Mid",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "High",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

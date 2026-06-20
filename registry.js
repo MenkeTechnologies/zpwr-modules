@@ -98,6 +98,56 @@
     return m ? decodeURIComponent(m[1]) : null;
   }
 
+  function fmtNum(v) {
+    if (typeof v !== 'number' || !isFinite(v)) return String(v);
+    if (Number.isInteger(v)) return String(v);
+    return Math.abs(v) >= 100 ? v.toFixed(0) : v.toFixed(2);
+  }
+  function pVal(p) { return fmtNum(p.value) + (p.unit ? ' ' + esc(p.unit) : ''); }
+  function pRange(p) { return fmtNum(p.min) + ' … ' + fmtNum(p.max) + (p.unit ? ' ' + esc(p.unit) : ''); }
+
+  function chainHtml(blocks) {
+    var parts = ['<span class="node io">In L</span>']
+      .concat(blocks.map(function (b) { return '<span class="node">' + esc(b.type) + '</span>'; }))
+      .concat(['<span class="node io">Out</span>']);
+    return parts.join('<span class="arrow">→</span>');
+  }
+
+  function ioHtml(z, blocks) {
+    var ins = (z.inPorts || []).map(function (p) {
+      return '<div class="io-item"><span class="jack">' + esc(p.label || ('src ' + p.src)) + '</span><span class="role">' + esc(p.role || 'input') + '</span></div>';
+    }).join('') || '<div class="io-item"><span class="jack">In L</span><span class="role">audio</span></div>';
+    var outs = (z.outPorts || []).map(function (p) {
+      var t = (blocks[p.node] && blocks[p.node].type) || ('block ' + p.node);
+      return '<div class="io-item"><span class="jack">' + esc(p.label || 'Out') + '</span><span class="role">from ' + esc(t) + '</span></div>';
+    }).join('') || '<div class="io-item"><span class="jack">Out</span><span class="role">audio</span></div>';
+    return '<div class="io-grid">' +
+      '<div class="io-col"><h3>Inputs</h3>' + ins + '</div>' +
+      '<div class="io-col"><h3>Outputs</h3>' + outs + '</div>' +
+    '</div>' +
+    '<p class="meta">Open inputs are re-wired when you drop the module in; everything between the blocks is patched for you. Mono signal path.</p>';
+  }
+
+  function blockHtml(b, i) {
+    var badges = []
+      .concat(b.category ? ['<span class="p-pill">' + esc(b.category) + '</span>'] : [])
+      .concat(b.tech ? ['<span class="p-pill">' + esc(b.tech) + '</span>'] : [])
+      .concat(b.analog ? ['<span class="p-pill">analog</span>'] : [])
+      .join('');
+    var paramTable = (b.params && b.params.length)
+      ? '<table class="bd-params"><thead><tr><th>Parameter</th><th>Value</th><th>Range</th></tr></thead><tbody>' +
+          b.params.map(function (p) { return '<tr><td>' + esc(p.name) + '</td><td class="v">' + pVal(p) + '</td><td>' + pRange(p) + '</td></tr>'; }).join('') +
+        '</tbody></table>'
+      : '';
+    var inList = (b.ins && b.ins.length) ? b.ins.map(esc).join(', ') : 'Audio';
+    return '<div class="block-detail">' +
+      '<div class="bd-head"><span class="bd-num">' + (i + 1) + '</span><span class="bd-name">' + esc(b.type) + '</span>' + badges + '</div>' +
+      '<p class="bd-desc">' + esc(b.desc || '') + '</p>' +
+      '<div class="bd-io"><b>In:</b> ' + inList + ' &nbsp;→&nbsp; <b>Out:</b> 1 signal</div>' +
+      paramTable +
+    '</div>';
+  }
+
   function renderDetail() {
     var root = document.getElementById('detailRoot');
     if (!root) return;
@@ -124,24 +174,39 @@
           '</div>' +
         '</div>' +
       '</div>' +
-      '<section class="tutorial-section"><h2>Signal chain</h2><div class="chain" id="chain"><span class="node">loading…</span></div>' +
-        '<p class="meta">Drop this module into a patch (in-plugin: <code>◈ MODULES</code>) and it expands into these blocks — In feeds the first, the last feeds Out.</p></section>' +
-      '<section class="tutorial-section"><h2>Details</h2>' +
-        '<dl class="det-table">' +
-          '<dt>Host</dt><dd>' + esc(m.host || '-') + '</dd>' +
-          '<dt>Category</dt><dd>' + esc(m.category || '-') + '</dd>' +
-          '<dt>License</dt><dd>' + esc(m.license || '-') + '</dd>' +
-          '<dt>Author</dt><dd>' + esc(m.author || '-') + '</dd>' +
-          '<dt>Slug</dt><dd>' + esc(m.slug || '-') + '</dd>' +
-        '</dl></section>';
-    if (m.url) fetch(m.url, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (z) {
-      var nodes = [];
-      try { nodes = (JSON.parse(z.patch || '{}').nodes || []).map(function (n) { return n.type; }); } catch (e) {}
-      var parts = ['<span class="node io">In</span>']
-        .concat(nodes.map(function (t) { return '<span class="node">' + esc(t) + '</span>'; }))
-        .concat(['<span class="node io">Out</span>']);
-      document.getElementById('chain').innerHTML = parts.join('<span class="arrow">→</span>');
-    }).catch(function () { document.getElementById('chain').innerHTML = '<span class="node">chain unavailable</span>'; });
+      '<div id="richSections"><section class="tutorial-section"><p class="meta">loading module details…</p></section></div>';
+
+    if (!m.url) { document.getElementById('richSections').innerHTML = '<section class="tutorial-section"><p class="meta">no module file URL.</p></section>'; return; }
+    fetch(m.url, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (z) {
+      var blocks = z.blocks || [];
+      if (!blocks.length) {
+        // fallback for plugin-saved modules without the rich "blocks" field
+        try { blocks = (JSON.parse(z.patch || '{}').nodes || []).map(function (n) { return { type: n.type, params: [] }; }); } catch (e) {}
+      }
+      var html = '';
+      html += '<section class="tutorial-section"><h2>DSP Overview</h2><p class="detail-overview">' + esc(z.overview || m.desc || '') + '</p></section>';
+      html += '<section class="tutorial-section"><h2>Signal Chain</h2><div class="chain">' + chainHtml(blocks) + '</div>' +
+        '<p class="meta">' + (z.nodeCount || blocks.length) + ' blocks in series — In L feeds the first, the last feeds Out.</p></section>';
+      html += '<section class="tutorial-section"><h2>Inputs &amp; Outputs</h2>' + ioHtml(z, blocks) + '</section>';
+      html += '<section class="tutorial-section"><h2>Blocks in this Module</h2>' + blocks.map(blockHtml).join('') + '</section>';
+      html += '<section class="tutorial-section"><h2>Details</h2><dl class="det-table">' +
+        '<dt>Host</dt><dd>' + esc(m.host || '-') + '</dd>' +
+        '<dt>Category</dt><dd>' + esc(m.category || '-') + '</dd>' +
+        '<dt>Blocks</dt><dd>' + (z.nodeCount || blocks.length) + '</dd>' +
+        '<dt>License</dt><dd>' + esc(m.license || '-') + '</dd>' +
+        '<dt>Author</dt><dd>' + esc(m.author || '-') + '</dd>' +
+        '<dt>Format</dt><dd>.zmod v' + esc(z.zmod || 1) + '</dd>' +
+        '<dt>Slug</dt><dd>' + esc(m.slug || '-') + '</dd>' +
+      '</dl></section>';
+      html += '<section class="tutorial-section"><h2>How to use</h2><ul class="feature-list">' +
+        '<li>In <b>' + esc(m.host || 'the plugin') + '</b>, open <code>◈ MODULES → Registry</code> and import it, or download the <code>.zfxmod</code> and drop it in your module folder.</li>' +
+        '<li>Click the module to splice it into the current patch — it expands into the ' + (z.nodeCount || blocks.length) + ' blocks above, fully wired.</li>' +
+        '<li>Open inputs (In L) are left unpatched so you can wire the module wherever you want in the signal path.</li>' +
+      '</ul></section>';
+      document.getElementById('richSections').innerHTML = html;
+    }).catch(function () {
+      document.getElementById('richSections').innerHTML = '<section class="tutorial-section"><p class="meta">could not load the module file.</p></section>';
+    });
   }
 
   // ---- boot ----------------------------------------------------------

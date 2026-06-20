@@ -3,6 +3,119 @@
   "name": "Flange Drive",
   "category": "Modulation",
   "desc": "Flanger pushed into an overdrive for jet-engine grit.",
+  "overview": "A deep flanger feeds an overdrive, so the sweeping comb peaks get pushed into saturation - a screaming jet-engine whoosh with grit. Big on guitars, synth leads and drum loops.",
+  "blocks": [
+    {
+      "type": "Flanger",
+      "category": "Delay",
+      "desc": "Swept-comb flanger: an LFO sweeps a very short delay (0.5-10 ms) mixed with the dry signal to create moving comb notches, with bipolar Feedback resonating the peaks (negative values invert for a hollow tone). Depth sets the sweep width and Mix the blend. Short delays with high feedback give the classic metallic jet-whoosh.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Rate",
+          "value": 0.300000011920929,
+          "min": 0.050000000745058,
+          "max": 8.0,
+          "def": 0.300000011920929,
+          "unit": "Hz"
+        },
+        {
+          "name": "Depth",
+          "value": 0.699999988079071,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.699999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Feedback",
+          "value": 0.300000011920929,
+          "min": -0.949999988079071,
+          "max": 0.949999988079071,
+          "def": 0.300000011920929,
+          "unit": ""
+        },
+        {
+          "name": "Delay",
+          "value": 2.0,
+          "min": 0.5,
+          "max": 10.0,
+          "def": 2.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Mix",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Drive",
+      "category": "Distortion",
+      "desc": "Waveshaping overdrive with three curves (Type: tanh soft-clip, sine fold, or hard clip) driven by up to 48 dB of gain plus a Bias offset for even-harmonic asymmetry. A post Tone low-pass tames fizz, Mix blends dry/wet, and Output trims the final level. Spans subtle warmth to aggressive distortion depending on Drive and curve.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Drive",
+          "value": 12.0,
+          "min": 0.0,
+          "max": 48.0,
+          "def": 12.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Output",
+          "value": -6.0,
+          "min": -24.0,
+          "max": 6.0,
+          "def": -6.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Bias",
+          "value": 0.0,
+          "min": -1.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Tone",
+          "value": 18000.0,
+          "min": 200.0,
+          "max": 18000.0,
+          "def": 18000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        },
+        {
+          "name": "Type",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

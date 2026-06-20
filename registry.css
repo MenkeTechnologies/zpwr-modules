@@ -23,3 +23,23 @@ mark.fzf-hl {
 
 /* module cards: glyph keeps the store look; foot shows host instead of price */
 .product-card .p-host { color: var(--accent); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+
+/* ---- detail page: I/O + per-block DSP breakdown ---- */
+.io-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 620px) { .io-grid { grid-template-columns: 1fr; } }
+.io-col h3 { font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-light); margin: 0 0 8px; }
+.io-item { display: flex; align-items: baseline; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.io-item .jack { color: var(--cyan); font-weight: 700; }
+.io-item .role { color: var(--text-muted); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-left: auto; }
+
+.block-detail { border: 1px solid var(--border); border-radius: 3px; padding: 14px 16px; margin-bottom: 12px; background: color-mix(in srgb, var(--bg-secondary) 60%, transparent); }
+.bd-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.bd-num { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 12px; color: var(--bg-primary); background: var(--cyan); border-radius: 3px; padding: 2px 7px; }
+.bd-name { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; color: var(--cyan); text-shadow: 0 0 8px var(--cyan-glow); }
+.bd-desc { color: var(--text-dim); font-size: 13px; margin: 6px 0 8px; }
+.bd-io { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+.bd-io b { color: var(--accent); }
+table.bd-params { width: 100%; border-collapse: collapse; font-size: 12px; }
+table.bd-params th { background: var(--bg-secondary); color: var(--cyan); font-family: 'Orbitron', sans-serif; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 8px; text-align: left; border: 1px solid var(--border); }
+table.bd-params td { padding: 5px 8px; border: 1px solid var(--border); color: var(--text-dim); }
+table.bd-params td.v { color: var(--green); font-weight: 700; }

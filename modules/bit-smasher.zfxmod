@@ -3,6 +3,87 @@
   "name": "Bit Smasher",
   "category": "Distortion",
   "desc": "Bitcrush into a clipper for aggressive digital noise.",
+  "overview": "Maximum digital destruction: a bitcrusher reduces the resolution and sample rate, then a hard clipper squares off the result. Glitchy, harsh and aggressive - for IDM, breakcore and noise.",
+  "blocks": [
+    {
+      "type": "Bitcrush",
+      "category": "Distortion",
+      "desc": "Digital degradation: Bits quantizes the amplitude to 2^Bits levels (quantization noise) while Downsample holds each sample for N frames (sample-rate reduction and aliasing). Mix blends against the dry signal. Low Bits gives gritty lo-fi crunch; high Downsample adds metallic aliasing for retro and 8-bit textures.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Bits",
+          "value": 8.0,
+          "min": 1.0,
+          "max": 16.0,
+          "def": 8.0,
+          "unit": ""
+        },
+        {
+          "name": "Downsample",
+          "value": 4.0,
+          "min": 1.0,
+          "max": 64.0,
+          "def": 4.0,
+          "unit": "x"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Clip",
+      "category": "Distortion",
+      "desc": "Clipper that morphs from soft (tanh) to hard clipping at the Threshold via Hardness, with Output trim and dry/wet Mix. Soft adds rounded saturation harmonics; hard adds bright odd harmonics and caps peaks dead. Use as a tone shaper or a transparent peak ceiling ahead of a limiter.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Threshold",
+          "value": -6.0,
+          "min": -24.0,
+          "max": 0.0,
+          "def": -6.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Hardness",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Output",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

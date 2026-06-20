@@ -3,6 +3,99 @@
   "name": "DJ Sweep",
   "category": "Filter",
   "desc": "Single-knob DJ filter into a delay for build-ups.",
+  "overview": "A performance DJ filter (one knob sweeps low-pass to high-pass through a centre kill) feeding a delay for tails on the sweep. Built for live transitions, drops and build-ups.",
+  "blocks": [
+    {
+      "type": "DJFilter",
+      "category": "Filter",
+      "desc": "One-knob DJ filter: with Cutoff at centre the signal is open, turning down sweeps in a low-pass and turning up sweeps in a high-pass, while Reso adds bite at the corner. The Mod input (in 3) offsets the knob for automation. The classic build-and-drop sweep on a single control.",
+      "ins": [
+        "Audio",
+        "Reso Mod",
+        "Cutoff Mod"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Cutoff",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Reso",
+          "value": 0.699999988079071,
+          "min": 0.100000001490116,
+          "max": 8.0,
+          "def": 0.699999988079071,
+          "unit": "Q"
+        },
+        {
+          "name": "Mod",
+          "value": 0.0,
+          "min": -1.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Delay",
+      "category": "Delay",
+      "desc": "Feedback delay line (1-8000 ms) with a damping low-pass in the feedback path that progressively darkens each repeat. Time is modulated by in 3 (scaled by Mod) for chorus and flange-style movement, Feedback sets regeneration up to 0.99, and Mix sets dry/wet. Damp at 0 gives bright digital echoes; higher values emulate tape/BBD high-frequency loss.",
+      "ins": [
+        "Audio",
+        "Feedback Mod",
+        "Time Mod"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Time",
+          "value": 250.0,
+          "min": 1.0,
+          "max": 8000.0,
+          "def": 250.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Feedback",
+          "value": 0.349999994039536,
+          "min": 0.0,
+          "max": 0.990000009536743,
+          "def": 0.349999994039536,
+          "unit": ""
+        },
+        {
+          "name": "Mod",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 500.0,
+          "def": 0.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Damp",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

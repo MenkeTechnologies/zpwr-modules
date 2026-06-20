@@ -3,6 +3,111 @@
   "name": "Auto Funk",
   "category": "Filter",
   "desc": "Envelope-following auto-wah into a comb for funk leads.",
+  "overview": "An envelope-driven auto-wah opens with your playing dynamics, then a comb filter adds a metallic resonant edge. Built for funk guitar, clavinet and plucky synth leads that quack with the groove.",
+  "blocks": [
+    {
+      "type": "AutoWah",
+      "category": "Filter",
+      "desc": "Envelope-following resonant band-pass (auto-wah): the input level sweeps a band-pass from Base upward by Range, with Sens setting how strongly playing dynamics open it and Attack the follow speed. Reso sets the peak sharpness and Mix the blend. Funky on guitar, clav and bass; raise Reso for a vocal quack.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Sens",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Base",
+          "value": 400.0,
+          "min": 100.0,
+          "max": 2000.0,
+          "def": 400.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Range",
+          "value": 3000.0,
+          "min": 200.0,
+          "max": 8000.0,
+          "def": 3000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Reso",
+          "value": 3.0,
+          "min": 0.300000011920929,
+          "max": 8.0,
+          "def": 3.0,
+          "unit": "Q"
+        },
+        {
+          "name": "Attack",
+          "value": 15.0,
+          "min": 1.0,
+          "max": 200.0,
+          "def": 15.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Comb",
+      "category": "Delay",
+      "desc": "Tuned comb resonator: a short feedback delay set by Freq (20-2000 Hz) with a damping low-pass, which doubles as a Karplus-Strong plucked string when excited by a transient. Feedback sets resonance and sustain while Damp darkens the decay. High feedback rings at the tuned pitch; pair it with noise or an impulse for string and membrane tones.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Freq",
+          "value": 220.0,
+          "min": 20.0,
+          "max": 2000.0,
+          "def": 220.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Feedback",
+          "value": 0.899999976158142,
+          "min": 0.0,
+          "max": 0.990000009536743,
+          "def": 0.899999976158142,
+          "unit": ""
+        },
+        {
+          "name": "Damp",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [

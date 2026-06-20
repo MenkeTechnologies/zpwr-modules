@@ -3,6 +3,154 @@
   "name": "Drum Bus Glue",
   "category": "Dynamics",
   "desc": "Transient shape into bus compression and saturation.",
+  "overview": "The classic drum-bus treatment: a transient designer sets attack and sustain, bus compression glues the kit together, and a drive stage adds harmonic weight. Bus this across a full drum group for punch and cohesion.",
+  "blocks": [
+    {
+      "type": "Transient",
+      "category": "Dynamics",
+      "desc": "Transient shaper: a fast vs slow envelope follower separates the attack (fast > slow) from the sustain (fast < slow), letting Attack and Sustain each be boosted or cut independently, with Output trimming the result. Add punch to drums, or tighten/lengthen sustain - all independent of input level, unlike a compressor.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Attack",
+          "value": 0.300000011920929,
+          "min": -1.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        },
+        {
+          "name": "Sustain",
+          "value": 0.0,
+          "min": -1.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Output",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 12.0,
+          "def": 0.0,
+          "unit": "dB"
+        }
+      ]
+    },
+    {
+      "type": "Compressor",
+      "category": "Dynamics",
+      "desc": "Peak-following compressor: tracks the input envelope with Attack/Release ballistics and, above Threshold, reduces gain by the set Ratio, with Makeup to restore level. Fast attack tames transients while slow release glues sustained material. A clean general-purpose dynamics stage - see the analog pack (FET, Opto, VariMu) for coloured compression.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Threshold",
+          "value": -18.0,
+          "min": -60.0,
+          "max": 0.0,
+          "def": -18.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Ratio",
+          "value": 4.0,
+          "min": 1.0,
+          "max": 20.0,
+          "def": 4.0,
+          "unit": ""
+        },
+        {
+          "name": "Attack",
+          "value": 5.0,
+          "min": 0.100000001490116,
+          "max": 100.0,
+          "def": 5.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Release",
+          "value": 80.0,
+          "min": 1.0,
+          "max": 500.0,
+          "def": 80.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Makeup",
+          "value": 0.0,
+          "min": -12.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "dB"
+        }
+      ]
+    },
+    {
+      "type": "Drive",
+      "category": "Distortion",
+      "desc": "Waveshaping overdrive with three curves (Type: tanh soft-clip, sine fold, or hard clip) driven by up to 48 dB of gain plus a Bias offset for even-harmonic asymmetry. A post Tone low-pass tames fizz, Mix blends dry/wet, and Output trims the final level. Spans subtle warmth to aggressive distortion depending on Drive and curve.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Drive",
+          "value": 12.0,
+          "min": 0.0,
+          "max": 48.0,
+          "def": 12.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Output",
+          "value": -6.0,
+          "min": -24.0,
+          "max": 6.0,
+          "def": -6.0,
+          "unit": "dB"
+        },
+        {
+          "name": "Bias",
+          "value": 0.0,
+          "min": -1.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Tone",
+          "value": 18000.0,
+          "min": 200.0,
+          "max": 18000.0,
+          "def": 18000.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Mix",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 1.0,
+          "unit": ""
+        },
+        {
+          "name": "Type",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
   "author": "MenkeTechnologies",
   "license": "CC0",
   "tags": [
