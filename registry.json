@@ -1,0 +1,21 @@
+{
+  "registry": 1,
+  "name": "zpwr-modules",
+  "updated": "2026-06-20",
+  "modules": [
+    {
+      "slug": "clean-boost",
+      "name": "Clean Boost",
+      "author": "MenkeTechnologies",
+      "category": "Utility",
+      "tags": [
+        "utility",
+        "gain"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Two-stage clean gain boost (In L -> +6 dB -> trim). A minimal example user module.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/clean-boost.zfxmod"
+    }
+  ]
+}

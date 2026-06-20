@@ -1,0 +1,28 @@
+{
+  "zmod": 1,
+  "name": "Clean Boost",
+  "category": "Utility",
+  "desc": "Two-stage clean gain boost (In L -> +6 dB -> trim). A minimal example user module.",
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "utility",
+    "gain"
+  ],
+  "host": "zpwr-fx",
+  "patch": "{\"v\": 4, \"nodes\": [{\"type\": \"Gain\", \"in\": [[{\"src\": 1, \"gain\": 1.0, \"color\": \"\"}], [], [], []], \"params\": [6.0, 0.0], \"config\": \"\"}, {\"type\": \"Gain\", \"in\": [[{\"src\": 1000, \"gain\": 1.0, \"color\": \"\"}], [], [], []], \"params\": [0.0, 0.0], \"config\": \"\"}], \"mods\": [], \"syncs\": [], \"outputs\": [], \"softKeyNames\": []}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "In L",
+      "role": "base"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "Out"
+    }
+  ],
+  "nodeCount": 2
+}
