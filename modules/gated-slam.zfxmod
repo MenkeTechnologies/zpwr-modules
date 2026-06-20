@@ -1,0 +1,29 @@
+{
+  "zmod": 1,
+  "name": "Gated Slam",
+  "category": "Reverb",
+  "desc": "Hard compression into a gated reverb for big drums.",
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "drums",
+    "gated",
+    "80s"
+  ],
+  "host": "zpwr-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"Compressor\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        -18.0,\r\n        4.0,\r\n        5.0,\r\n        80.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"GatedVerb\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.600000023841858,\r\n        0.400000005960464,\r\n        -30.0,\r\n        0.300000011920929,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "In L",
+      "role": "base"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "Out"
+    }
+  ],
+  "nodeCount": 2
+}

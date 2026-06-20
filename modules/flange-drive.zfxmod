@@ -1,0 +1,28 @@
+{
+  "zmod": 1,
+  "name": "Flange Drive",
+  "category": "Modulation",
+  "desc": "Flanger pushed into an overdrive for jet-engine grit.",
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "flanger",
+    "drive"
+  ],
+  "host": "zpwr-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"Flanger\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.300000011920929,\r\n        0.699999988079071,\r\n        0.300000011920929,\r\n        2.0,\r\n        0.5,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Drive\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        12.0,\r\n        -6.0,\r\n        0.0,\r\n        18000.0,\r\n        1.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "In L",
+      "role": "base"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "Out"
+    }
+  ],
+  "nodeCount": 2
+}

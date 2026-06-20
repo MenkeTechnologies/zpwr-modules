@@ -1,0 +1,29 @@
+{
+  "zmod": 1,
+  "name": "Grain Cloud",
+  "category": "Delay",
+  "desc": "Granular delay into a grain reverb for textures.",
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "granular",
+    "texture",
+    "ambient"
+  ],
+  "host": "zpwr-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"GrainDelay\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        300.0,\r\n        0.0,\r\n        0.400000005960464,\r\n        0.5,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"GrainVerb\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.600000023841858,\r\n        30.0,\r\n        0.400000005960464,\r\n        0.300000011920929,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "In L",
+      "role": "base"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "Out"
+    }
+  ],
+  "nodeCount": 2
+}

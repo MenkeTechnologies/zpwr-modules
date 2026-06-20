@@ -1,0 +1,29 @@
+{
+  "zmod": 1,
+  "name": "DJ Sweep",
+  "category": "Filter",
+  "desc": "Single-knob DJ filter into a delay for build-ups.",
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "dj",
+    "filter",
+    "performance"
+  ],
+  "host": "zpwr-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"DJFilter\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.5,\r\n        0.699999988079071,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Delay\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        250.0,\r\n        0.349999994039536,\r\n        0.0,\r\n        0.0,\r\n        1.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "In L",
+      "role": "base"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "Out"
+    }
+  ],
+  "nodeCount": 2
+}

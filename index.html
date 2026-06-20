@@ -1,322 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ZPWR Modules — Library</title>
-<meta name="description" content="Shared user-module registry for the MenkeTechnologies plugin stack (zpwr-fx / zpwr-synth / zpwr-midi-fx) — a VCV-Library-style browser." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --accent: #ff2a6d; --accent-glow: rgba(255,42,109,0.4);
-    --cyan: #05d9e8; --cyan-glow: rgba(5,217,232,0.4); --cyan-dim: rgba(5,217,232,0.15);
-    --magenta: #d300c5; --magenta-glow: rgba(211,0,197,0.35);
-    --green: #39ff14; --yellow: #f0e14a;
-    --text: #e0f0ff; --text-dim: #7a8ba8; --text-muted: #3d4f6a;
-    --bg-primary: #05050a; --bg-secondary: #0a0a14; --bg-card: #0d0d1a; --bg-hover: #12122a;
-    --border: #1a1a3e; --border-glow: #2a1a4e;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: 'Share Tech Mono', ui-monospace, monospace;
-    color: var(--text); background: var(--bg-primary);
-    background-image:
-      linear-gradient(var(--cyan-dim) 1px, transparent 1px),
-      linear-gradient(90deg, var(--cyan-dim) 1px, transparent 1px);
-    background-size: 44px 44px; min-height: 100vh; line-height: 1.5;
-  }
-  body::before {
-    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background:
-      radial-gradient(circle at 50% -10%, rgba(5,217,232,0.10), transparent 55%),
-      repeating-linear-gradient(180deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,0.16) 2px 3px);
-  }
-  a { color: inherit; text-decoration: none; }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="description" content="ZPWR Modules — shared user-module registry for the MenkeTechnologies plugin stack (zpwr-fx / zpwr-synth / zpwr-midi-fx). A VCV-Library-style browser." />
+  <title>ZPWR Modules — Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="hud-static.css" />
+  <style>
+    /* ---- registry-specific layout, on top of the shared HUD (hud-static.css) ---- */
+    .docs-main { max-width: 86rem; }
+    .reg-layout { display: grid; grid-template-columns: 210px 1fr; gap: 1.5rem; align-items: start; }
+    @media (max-width: 760px) { .reg-layout { grid-template-columns: 1fr; } }
 
-  /* ---- top nav (VCV-style header) ---- */
-  .nav {
-    position: relative; z-index: 2; display: flex; align-items: center; gap: 22px;
-    padding: 12px 22px; border-bottom: 1px solid var(--border);
-    background: rgba(8,8,18,0.85); backdrop-filter: blur(6px);
-  }
-  .logo { font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 4px; font-size: 18px; color: var(--cyan); text-shadow: 0 0 10px var(--cyan-glow); }
-  .logo .pwr { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
-  .nav .navlinks { display: flex; gap: 18px; align-items: center; }
-  .nav .navlinks a { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 1.5px; font-size: 12px; text-transform: uppercase; color: var(--text-dim); }
-  .nav .navlinks a:hover { color: var(--cyan); }
-  .nav .navlinks a.active { color: var(--text); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
-  .nav .spacer { flex: 1; }
-  .nav .gh { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 1.5px; font-size: 11px; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 3px; padding: 6px 12px; }
-  .nav .gh:hover { color: var(--bg-primary); background: var(--accent); box-shadow: 0 0 14px var(--accent-glow); }
+    .reg-side { position: sticky; top: 1rem; }
+    .reg-side .fgroup { margin-bottom: 1.25rem; }
+    .reg-side .fhead {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 10px;
+      text-transform: uppercase; color: var(--accent); padding-bottom: 6px;
+      border-bottom: 1px solid var(--border); margin-bottom: 8px;
+    }
+    .flist { display: flex; flex-direction: column; gap: 1px; max-height: 260px; overflow-y: auto; }
+    .fitem {
+      font-size: 13px; color: var(--text-dim); cursor: pointer; padding: 4px 7px; border-radius: 2px;
+      border-left: 2px solid transparent; display: flex; justify-content: space-between; gap: 8px;
+    }
+    .fitem:hover { color: var(--cyan); background: var(--bg-hover); }
+    .fitem.on { color: var(--cyan); border-left-color: var(--cyan); background: rgba(5,217,232,0.08); }
+    .fitem .n { color: var(--text-muted); font-size: 11px; }
+    select.selsort, input.search {
+      width: 100%; font-family: 'Share Tech Mono', monospace; font-size: 13px; color: var(--text);
+      background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 2px; padding: 8px 10px; outline: none;
+    }
+    select.selsort:focus, input.search:focus { border-color: var(--cyan); box-shadow: 0 0 12px var(--cyan-dim); }
+    .pricetabs { display: flex; gap: 5px; flex-wrap: wrap; }
 
-  .crumb { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 20px 22px 4px; }
-  .crumb h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 6px; font-size: 26px; margin: 0; color: var(--text); }
-  .crumb h1 .tag { color: var(--cyan); text-shadow: 0 0 10px var(--cyan-glow); }
-  .crumb .sub { color: var(--text-dim); font-size: 13px; letter-spacing: 1px; margin-top: 4px; }
-  .crumb .sub em { color: var(--magenta); font-style: normal; }
+    .reg-topbar { margin-bottom: 14px; }
+    .reg-found { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 13px; color: var(--text); margin-bottom: 4px; }
+    .reg-found b { color: var(--cyan); text-shadow: 0 0 8px var(--cyan-glow); }
+    .clearf { margin-left: 10px; font-size: 11px; color: var(--accent); cursor: pointer; letter-spacing: 1px; }
+    .clearf:hover { text-decoration: underline; }
 
-  /* ---- 2-column layout: sidebar + content ---- */
-  .layout { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 14px 22px 70px; display: grid; grid-template-columns: 190px 1fr; gap: 26px; align-items: start; }
-  @media (max-width: 720px) { .layout { grid-template-columns: 1fr; } }
+    .reg-list { display: flex; flex-direction: column; gap: 0; }
+    /* each module is a .doc-card (HUD chrome: glass + pulsing neon border) */
+    .mcard { display: flex; gap: 16px; align-items: flex-start; }
+    .mcard .glyph {
+      flex: 0 0 56px; width: 56px; height: 56px; border-radius: 3px; display: flex; align-items: center; justify-content: center;
+      font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 17px; letter-spacing: 1px; color: var(--bg-primary);
+      border: 1px solid rgba(255,255,255,0.18); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    }
+    .mbody { flex: 1; min-width: 0; }
+    .mtop { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+    .brand { font-size: 12px; color: var(--magenta); letter-spacing: 0.5px; cursor: pointer; }
+    .brand:hover { text-shadow: 0 0 8px var(--magenta-glow); }
+    .mname { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.5px; color: var(--cyan); text-shadow: 0 0 8px var(--cyan-glow); }
+    .mdesc { color: var(--text-dim); font-size: 13px; margin: 2px 0 8px; }
+    .tagrow { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .pill {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 9px; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 999px; border: 1px solid; cursor: pointer; background: transparent;
+    }
+    .pill.cat { color: var(--green); border-color: var(--green); }
+    .pill.host { color: var(--accent); border-color: var(--accent); }
+    .pill.tag { color: var(--text-dim); border-color: var(--border-glow); }
+    .pill.lic { color: var(--text); border-color: var(--cyan); }
+    .pill:hover { filter: brightness(1.35); box-shadow: 0 0 8px currentColor; }
+    .mfoot { display: flex; align-items: center; gap: 14px; }
+    .by { color: var(--text-muted); font-size: 11px; }
 
-  .side { position: sticky; top: 14px; display: flex; flex-direction: column; gap: 20px; }
-  .fgroup .fhead { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 11px; text-transform: uppercase; color: var(--accent); padding-bottom: 6px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
-  .fgroup .flist { display: flex; flex-direction: column; gap: 2px; max-height: 280px; overflow-y: auto; }
-  .fitem { font-size: 13px; color: var(--text-dim); cursor: pointer; padding: 3px 6px; border-radius: 3px; border-left: 2px solid transparent; display: flex; justify-content: space-between; gap: 8px; }
-  .fitem:hover { color: var(--cyan); background: rgba(5,217,232,0.05); }
-  .fitem.on { color: var(--cyan); border-left-color: var(--cyan); background: rgba(5,217,232,0.08); }
-  .fitem .n { color: var(--text-muted); font-size: 11px; }
-  .pricetabs { display: flex; gap: 6px; flex-wrap: wrap; }
-  .ptab { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 10px; text-transform: uppercase; cursor: pointer; color: var(--text-dim); background: rgba(5,217,232,0.04); border: 1px solid var(--border); border-radius: 3px; padding: 5px 9px; }
-  .ptab:hover { color: var(--cyan); border-color: var(--cyan-dim); }
-  .ptab.on { color: var(--bg-primary); background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 10px var(--cyan-glow); }
-  .selsort { width: 100%; font-family: 'Share Tech Mono', monospace; font-size: 13px; color: var(--text); background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 7px 9px; outline: none; }
-  .selsort:focus { border-color: var(--cyan); }
-
-  /* ---- content ---- */
-  .topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-  .search { flex: 1; font-family: 'Share Tech Mono', monospace; font-size: 14px; color: var(--text); background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 10px 13px; outline: none; }
-  .search:focus { border-color: var(--cyan); box-shadow: 0 0 12px var(--cyan-glow); }
-  .found { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 13px; color: var(--text); margin-bottom: 12px; }
-  .found b { color: var(--cyan); }
-  .clearf { margin-left: 10px; font-size: 11px; color: var(--accent); cursor: pointer; letter-spacing: 1px; }
-  .clearf:hover { text-decoration: underline; }
-
-  /* single-column cards (VCV layout): panel thumb left, text right */
-  .list { display: flex; flex-direction: column; gap: 12px; }
-  .mcard { display: flex; gap: 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; transition: border-color 140ms ease, box-shadow 140ms ease; }
-  .mcard:hover { border-color: var(--cyan); box-shadow: 0 0 16px var(--cyan-glow); }
-  /* faux eurorack panel thumbnail */
-  .panel { flex: 0 0 76px; width: 76px; height: 116px; border-radius: 4px; border: 1px solid var(--border-glow); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding-top: 8px; }
-  .panel .pn { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 15px; letter-spacing: 1px; color: var(--bg-primary); text-shadow: 0 1px 0 rgba(255,255,255,0.25); }
-  .panel .knobs { display: flex; flex-direction: column; gap: 9px; margin-top: 10px; align-items: center; }
-  .panel .knob { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff6, #0008); border: 1px solid #0007; }
-  .panel .jacks { position: absolute; bottom: 7px; display: flex; gap: 7px; }
-  .panel .jack { width: 9px; height: 9px; border-radius: 50%; background: #111; border: 2px solid #0009; box-shadow: inset 0 0 0 1px #fff3; }
-
-  .mbody { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-  .mtop { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .brand { font-size: 12px; color: var(--magenta); letter-spacing: 0.5px; cursor: pointer; }
-  .brand:hover { text-shadow: 0 0 8px var(--magenta-glow); }
-  .mname { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.5px; color: var(--cyan); text-shadow: 0 0 8px var(--cyan-glow); }
-  .mdesc { color: var(--text-dim); font-size: 13px; }
-  .tagrow { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
-  .pill { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 9px; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1px solid; cursor: pointer; }
-  .pill.cat { color: var(--green); border-color: var(--green); }
-  .pill.host { color: var(--accent); border-color: var(--accent); }
-  .pill.tag { color: var(--text-dim); border-color: var(--border-glow); }
-  .pill.lic { color: var(--yellow); border-color: var(--yellow); }
-  .pill:hover { filter: brightness(1.3); }
-  .mfoot { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
-  .dl { font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 1.5px; font-size: 11px; text-transform: uppercase; color: var(--accent); background: rgba(255,42,109,0.06); border: 1px solid var(--accent); border-radius: 3px; padding: 6px 13px; }
-  .dl:hover { color: var(--bg-primary); background: var(--accent); box-shadow: 0 0 14px var(--accent-glow); }
-  .by { color: var(--text-muted); font-size: 11px; }
-
-  .pager { display: flex; gap: 6px; justify-content: center; margin-top: 26px; flex-wrap: wrap; }
-  .pg { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 12px; min-width: 30px; text-align: center; cursor: pointer; color: var(--text-dim); background: rgba(5,217,232,0.04); border: 1px solid var(--border); border-radius: 3px; padding: 6px 9px; }
-  .pg:hover { color: var(--cyan); border-color: var(--cyan-dim); }
-  .pg.on { color: var(--bg-primary); background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 10px var(--cyan-glow); }
-
-  .empty { text-align: center; color: var(--text-dim); padding: 60px 0; letter-spacing: 1px; }
-  .empty b { color: var(--cyan); }
-  footer { position: relative; z-index: 1; text-align: center; color: var(--text-muted); font-size: 12px; letter-spacing: 1px; padding: 0 0 40px; }
-  footer code { color: var(--green); }
-  footer a { color: var(--text-dim); } footer a:hover { color: var(--cyan); }
-</style>
+    .pager { display: flex; gap: 6px; justify-content: center; margin-top: 22px; flex-wrap: wrap; }
+    .pg {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 12px; min-width: 30px; text-align: center; cursor: pointer;
+      color: var(--text-dim); background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 2px; padding: 6px 9px;
+    }
+    .pg:hover { color: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 10px var(--cyan-dim); }
+    .pg.on { color: var(--bg-primary); background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 12px var(--cyan-glow); }
+    .reg-empty { text-align: center; color: var(--text-dim); padding: 50px 0; letter-spacing: 1px; }
+    .reg-empty b { color: var(--cyan); }
+  </style>
 </head>
 <body>
-  <div class="nav">
-    <a class="logo" href="https://menketechnologies.github.io/zpwr-modules/"><span class="pwr">ZPWR</span> MODULES</a>
-    <div class="navlinks">
-      <a href="https://github.com/MenkeTechnologies/zpwr-fx">Rack</a>
-      <a class="active" href="https://menketechnologies.github.io/zpwr-modules/">Library</a>
-      <a href="https://github.com/MenkeTechnologies/zpwr-patch-core#0x05-user-modules--registry">Manual</a>
-    </div>
-    <div class="spacer"></div>
-    <a class="gh" href="https://github.com/MenkeTechnologies/zpwr-modules">GitHub</a>
-  </div>
+  <div class="app" id="docsApp">
+    <div class="crt-scanline" id="crtH" aria-hidden="true"></div>
+    <div class="crt-scanline-v" id="crtV" aria-hidden="true"></div>
 
-  <div class="crumb">
-    <h1>LIBRARY <span class="tag">// REGISTRY</span></h1>
-    <div class="sub"><em>// patch once. reuse everywhere.</em> &nbsp; shared user modules for zpwr-fx · zpwr-synth · zpwr-midi-fx</div>
-  </div>
+    <header class="docs-header">
+      <div class="docs-header-inner">
+        <div class="docs-title-block">
+          <h1>ZPWR MODULES // LIBRARY</h1>
+          <div class="docs-sub">// patch once. reuse everywhere. — the shared user-module registry for the MenkeTechnologies plugin stack.</div>
+          <div class="docs-build-line" id="buildline">zpwr-fx · zpwr-synth · zpwr-midi-fx · registry.json</div>
+        </div>
+        <div class="docs-header-actions">
+          <div class="hud-scheme-row">
+            <span class="hud-scheme-label">// Color scheme</span>
+            <div class="scheme-grid" id="hudSchemeGrid"></div>
+          </div>
+          <div class="docs-toolbar">
+            <button class="btn btn-secondary" id="btnTheme" type="button">Light</button>
+            <button class="btn btn-secondary active" id="btnCrt" type="button">CRT</button>
+            <button class="btn btn-secondary active" id="btnNeon" type="button">Neon</button>
+            <a class="btn btn-secondary" href="https://github.com/MenkeTechnologies/zpwr-modules">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-  <div class="layout">
-    <aside class="side">
-      <div class="fgroup">
-        <div class="fhead">Sort</div>
-        <select id="sort" class="selsort">
-          <option value="name">Name</option>
-          <option value="newest">Newest</option>
-          <option value="random">Random</option>
-        </select>
-      </div>
-      <div class="fgroup">
-        <div class="fhead">License</div>
-        <div class="pricetabs" id="lictabs"></div>
-      </div>
-      <div class="fgroup">
-        <div class="fhead">Host</div>
-        <div class="flist" id="hostlist"></div>
-      </div>
-      <div class="fgroup">
-        <div class="fhead">Brand</div>
-        <div class="flist" id="brandlist"></div>
-      </div>
-      <div class="fgroup">
-        <div class="fhead">Tag</div>
-        <div class="flist" id="taglist"></div>
-      </div>
-    </aside>
+    <main class="docs-main">
+      <div class="reg-layout">
+        <aside class="reg-side doc-card">
+          <div class="fgroup">
+            <div class="fhead">Sort</div>
+            <select id="sort" class="selsort">
+              <option value="name">Name</option>
+              <option value="newest">Newest</option>
+              <option value="random">Random</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <div class="fhead">License</div>
+            <div class="pricetabs" id="lictabs"></div>
+          </div>
+          <div class="fgroup">
+            <div class="fhead">Host</div>
+            <div class="flist" id="hostlist"></div>
+          </div>
+          <div class="fgroup">
+            <div class="fhead">Brand</div>
+            <div class="flist" id="brandlist"></div>
+          </div>
+          <div class="fgroup">
+            <div class="fhead">Tag</div>
+            <div class="flist" id="taglist"></div>
+          </div>
+        </aside>
 
-    <main>
-      <div class="topbar">
-        <input id="q" class="search" type="text" placeholder="search modules — name, author, tag…" autocomplete="off" spellcheck="false" />
+        <section>
+          <div class="reg-topbar">
+            <input id="q" class="search" type="text" placeholder="search modules — name, author, tag…" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="reg-found" id="found"></div>
+          <div class="reg-list" id="list"></div>
+          <div class="reg-empty" id="empty" style="display:none"></div>
+          <div class="pager" id="pager"></div>
+        </section>
       </div>
-      <div class="found" id="found"></div>
-      <div class="list" id="list"></div>
-      <div class="empty" id="empty" style="display:none"></div>
-      <div class="pager" id="pager"></div>
+
+      <footer class="doc-footer">
+        a <a href="https://github.com/MenkeTechnologies">MenkeTechnologies</a> audio-stack registry · served static from GitHub Pages ·
+        <a href="registry.json">registry.json</a> · publish via a manifest PR to
+        <a href="https://github.com/MenkeTechnologies/zpwr-modules">zpwr-modules</a>
+      </footer>
     </main>
   </div>
 
-  <footer>
-    a <a href="https://github.com/MenkeTechnologies">MenkeTechnologies</a> audio-stack registry · served static from GitHub Pages · <code>registry.json</code>
-  </footer>
+  <script src="hud-theme.js"></script>
+  <script>
+    const PER_PAGE = 50;
+    const GLYPH_VARS = ["--cyan", "--green", "--accent", "--magenta", "--accent-light"];
+    let MODULES = [], page = 1, seed = 0;
+    const sel = { license: "all", host: null, brand: null, tag: null };
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const hash = (s) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); };
+    const cssVar = (k) => getComputedStyle(document.documentElement).getPropertyValue(k).trim() || "#05d9e8";
 
-<script>
-  const PER_PAGE = 50;
-  const PANEL_COLORS = ["#05d9e8", "#39ff14", "#f0e14a", "#ff8a3d", "#d300c5", "#ff2a6d", "#8a7dff", "#00ffc8"];
-  let MODULES = [], page = 1, seed = 0;
-  const sel = { license: "all", host: null, brand: null, tag: null };
-  const $ = (id) => document.getElementById(id);
-  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const hash = (s) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h); };
-
-  function counts(key) {
-    const m = new Map();
-    for (const mod of MODULES) {
-      const vals = key === "tag" ? (mod.tags || []) : [mod[key]];
-      for (const v of vals) if (v) m.set(v, (m.get(v) || 0) + 1);
+    function counts(key) {
+      const m = new Map();
+      for (const mod of MODULES) {
+        const vals = key === "tag" ? (mod.tags || []) : [mod[key]];
+        for (const v of vals) if (v) m.set(v, (m.get(v) || 0) + 1);
+      }
+      return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0]));
     }
-    return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0]));
-  }
 
-  function buildFilters() {
-    // License tabs
-    const lics = ["all", ...new Set(MODULES.map((m) => m.license).filter(Boolean))];
-    $("lictabs").innerHTML = "";
-    lics.forEach((l) => {
-      const b = document.createElement("div");
-      b.className = "ptab" + (sel.license === l ? " on" : "");
-      b.textContent = l === "all" ? "All" : l;
-      b.onclick = () => { sel.license = l; page = 1; buildFilters(); render(); };
-      $("lictabs").appendChild(b);
-    });
-    // text-link groups with counts
-    const group = (elId, key, selKey) => {
-      const host = $(elId); host.innerHTML = "";
-      counts(key).forEach(([val, n]) => {
-        const it = document.createElement("div");
-        it.className = "fitem" + (sel[selKey] === val ? " on" : "");
-        it.innerHTML = "<span>" + esc(key === "host" ? val.replace("zpwr-", "") : val) + "</span><span class='n'>" + n + "</span>";
-        it.onclick = () => { sel[selKey] = sel[selKey] === val ? null : val; page = 1; buildFilters(); render(); };
-        host.appendChild(it);
+    function buildFilters() {
+      const lics = ["all", ...new Set(MODULES.map((m) => m.license).filter(Boolean))];
+      $("lictabs").innerHTML = "";
+      lics.forEach((l) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "btn btn-secondary" + (sel.license === l ? " active" : "");
+        b.style.padding = "5px 9px"; b.style.fontSize = "10px";
+        b.textContent = l === "all" ? "All" : l;
+        b.onclick = () => { sel.license = l; page = 1; buildFilters(); render(); };
+        $("lictabs").appendChild(b);
       });
-    };
-    group("hostlist", "host", "host");
-    group("brandlist", "author", "brand");
-    group("taglist", "tag", "tag");
-  }
-
-  function filtered() {
-    const q = $("q").value.trim().toLowerCase();
-    let rows = MODULES.filter((m) => {
-      if (sel.license !== "all" && (m.license || "") !== sel.license) return false;
-      if (sel.host && (m.host || "") !== sel.host) return false;
-      if (sel.brand && (m.author || "") !== sel.brand) return false;
-      if (sel.tag && !(m.tags || []).includes(sel.tag)) return false;
-      if (!q) return true;
-      const hay = (m.name + " " + (m.author || "") + " " + (m.category || "") + " " + (m.desc || "") + " " + (m.tags || []).join(" ")).toLowerCase();
-      return hay.indexOf(q) >= 0;
-    });
-    const sort = $("sort").value;
-    if (sort === "name") rows.sort((a, b) => a.name.localeCompare(b.name));
-    else if (sort === "newest") rows.reverse();
-    else if (sort === "random") rows.sort((a, b) => ((hash(a.slug || a.name) ^ seed) % 997) - ((hash(b.slug || b.name) ^ seed) % 997));
-    return rows;
-  }
-
-  function panelHtml(m) {
-    const c = PANEL_COLORS[hash(m.slug || m.name) % PANEL_COLORS.length];
-    const initials = (m.name || "?").replace(/[^A-Za-z0-9 ]/g, "").split(/\s+/).map((w) => w[0] || "").join("").slice(0, 3).toUpperCase();
-    return '<div class="panel" style="background:linear-gradient(160deg,' + c + ',#0a0a14 88%)">' +
-      '<div class="pn">' + esc(initials) + "</div>" +
-      '<div class="knobs"><div class="knob"></div><div class="knob"></div></div>' +
-      '<div class="jacks"><div class="jack"></div><div class="jack"></div></div></div>';
-  }
-
-  function render() {
-    const rows = filtered();
-    const activeFilter = sel.host || sel.brand || sel.tag || (sel.license !== "all" ? sel.license : null) || $("q").value.trim();
-    $("found").innerHTML = "<b>" + rows.length + "</b> module" + (rows.length === 1 ? "" : "s") + " found"
-      + (activeFilter ? '<span class="clearf" id="clear">[ clear filters ]</span>' : "");
-    if (activeFilter) $("clear").onclick = () => { sel.license = "all"; sel.host = sel.brand = sel.tag = null; $("q").value = ""; page = 1; buildFilters(); render(); };
-
-    const pages = Math.max(1, Math.ceil(rows.length / PER_PAGE));
-    if (page > pages) page = pages;
-    const slice = rows.slice((page - 1) * PER_PAGE, page * PER_PAGE);
-
-    const list = $("list"), empty = $("empty");
-    list.innerHTML = "";
-    if (!rows.length) {
-      empty.style.display = "";
-      empty.innerHTML = MODULES.length ? "no modules match — <b>clear the filters</b>" : "registry is empty. <b>publish the first module</b> via a manifest PR.";
-      $("pager").innerHTML = ""; return;
+      const group = (elId, key, selKey) => {
+        const host = $(elId); host.innerHTML = "";
+        const list = counts(key);
+        if (!list.length) { const e = document.createElement("div"); e.className = "fitem"; e.style.opacity = ".5"; e.textContent = "—"; host.appendChild(e); return; }
+        list.forEach(([val, n]) => {
+          const it = document.createElement("div");
+          it.className = "fitem" + (sel[selKey] === val ? " on" : "");
+          it.innerHTML = "<span>" + esc(key === "host" ? val.replace("zpwr-", "") : val) + "</span><span class='n'>" + n + "</span>";
+          it.onclick = () => { sel[selKey] = sel[selKey] === val ? null : val; page = 1; buildFilters(); render(); };
+          host.appendChild(it);
+        });
+      };
+      group("hostlist", "host", "host");
+      group("brandlist", "author", "brand");
+      group("taglist", "tag", "tag");
     }
-    empty.style.display = "none";
-    for (const m of slice) {
-      const card = document.createElement("div");
-      card.className = "mcard";
-      const tags = []
-        .concat(m.category ? ['<span class="pill cat">' + esc(m.category) + "</span>"] : [])
-        .concat(m.host ? ['<span class="pill host">' + esc(m.host) + "</span>"] : [])
-        .concat((m.tags || []).map((t) => '<span class="pill tag">' + esc(t) + "</span>"))
-        .concat(m.license ? ['<span class="pill lic">' + esc(m.license) + "</span>"] : [])
-        .join("");
-      card.innerHTML = panelHtml(m) +
-        '<div class="mbody">' +
-          '<div class="mtop"><span class="brand">' + esc(m.author || "unknown") + '</span><span class="mname">' + esc(m.name) + "</span></div>" +
-          '<div class="mdesc">' + esc(m.desc) + "</div>" +
-          '<div class="tagrow">' + tags + "</div>" +
-          '<div class="mfoot">' + (m.url ? '<a class="dl" href="' + esc(m.url) + '" download>⤓ download</a>' : "") + '<span class="by">slug: ' + esc(m.slug || "-") + "</span></div>" +
-        "</div>";
-      // pill click -> set filter
-      card.querySelectorAll(".pill.cat,.pill.tag").forEach((p) => p.onclick = () => { sel.tag = p.textContent; page = 1; buildFilters(); render(); window.scrollTo({ top: 0 }); });
-      card.querySelector(".pill.host") && (card.querySelector(".pill.host").onclick = () => { sel.host = m.host; page = 1; buildFilters(); render(); window.scrollTo({ top: 0 }); });
-      card.querySelector(".brand").onclick = () => { sel.brand = m.author; page = 1; buildFilters(); render(); window.scrollTo({ top: 0 }); };
-      list.appendChild(card);
-    }
-    // pagination
-    const pager = $("pager"); pager.innerHTML = "";
-    if (pages > 1) {
-      const mk = (label, p, on) => { const b = document.createElement("div"); b.className = "pg" + (on ? " on" : ""); b.textContent = label; b.onclick = () => { page = p; render(); window.scrollTo({ top: 0 }); }; pager.appendChild(b); };
-      if (page > 1) mk("‹", page - 1, false);
-      for (let p = 1; p <= pages; p++) mk(String(p), p, p === page);
-      if (page < pages) mk("›", page + 1, false);
-    }
-  }
 
-  $("q").addEventListener("input", () => { page = 1; render(); });
-  $("sort").addEventListener("change", () => { seed = (seed + 1) | 0; page = 1; render(); });
+    function filtered() {
+      const q = $("q").value.trim().toLowerCase();
+      let rows = MODULES.filter((m) => {
+        if (sel.license !== "all" && (m.license || "") !== sel.license) return false;
+        if (sel.host && (m.host || "") !== sel.host) return false;
+        if (sel.brand && (m.author || "") !== sel.brand) return false;
+        if (sel.tag && !(m.tags || []).includes(sel.tag)) return false;
+        if (!q) return true;
+        const hay = (m.name + " " + (m.author || "") + " " + (m.category || "") + " " + (m.desc || "") + " " + (m.tags || []).join(" ")).toLowerCase();
+        return hay.indexOf(q) >= 0;
+      });
+      const sort = $("sort").value;
+      if (sort === "name") rows.sort((a, b) => a.name.localeCompare(b.name));
+      else if (sort === "newest") rows.reverse();
+      else if (sort === "random") rows.sort((a, b) => ((hash(a.slug || a.name) ^ seed) % 997) - ((hash(b.slug || b.name) ^ seed) % 997));
+      return rows;
+    }
 
-  fetch("registry.json", { cache: "no-store" })
-    .then((r) => r.json())
-    .then((d) => { MODULES = Array.isArray(d.modules) ? d.modules : []; buildFilters(); render(); })
-    .catch(() => { $("empty").style.display = ""; $("empty").innerHTML = "could not load <b>registry.json</b>."; });
-</script>
+    function render() {
+      const rows = filtered();
+      const active = sel.host || sel.brand || sel.tag || (sel.license !== "all" ? sel.license : null) || $("q").value.trim();
+      $("found").innerHTML = "<b>" + rows.length + "</b> module" + (rows.length === 1 ? "" : "s") + " found"
+        + (active ? '<span class="clearf" id="clear">[ clear filters ]</span>' : "");
+      if (active) $("clear").onclick = () => { sel.license = "all"; sel.host = sel.brand = sel.tag = null; $("q").value = ""; page = 1; buildFilters(); render(); };
+
+      const pages = Math.max(1, Math.ceil(rows.length / PER_PAGE));
+      if (page > pages) page = pages;
+      const slice = rows.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+      const list = $("list"), empty = $("empty");
+      list.innerHTML = "";
+      if (!rows.length) {
+        empty.style.display = "";
+        empty.innerHTML = MODULES.length ? "no modules match — <b>clear the filters</b>" : "registry is empty. <b>publish the first module</b> via a manifest PR.";
+        $("pager").innerHTML = ""; return;
+      }
+      empty.style.display = "none";
+      for (const m of slice) {
+        const card = document.createElement("div");
+        card.className = "doc-card mcard";
+        const gv = cssVar(GLYPH_VARS[hash(m.slug || m.name) % GLYPH_VARS.length]);
+        const initials = (m.name || "?").replace(/[^A-Za-z0-9 ]/g, "").split(/\s+/).map((w) => w[0] || "").join("").slice(0, 3).toUpperCase();
+        const tags = []
+          .concat(m.category ? ['<span class="pill cat">' + esc(m.category) + "</span>"] : [])
+          .concat(m.host ? ['<span class="pill host">' + esc(m.host) + "</span>"] : [])
+          .concat((m.tags || []).map((t) => '<span class="pill tag">' + esc(t) + "</span>"))
+          .concat(m.license ? ['<span class="pill lic">' + esc(m.license) + "</span>"] : [])
+          .join("");
+        card.innerHTML =
+          '<div class="glyph" style="background:linear-gradient(150deg,' + gv + ',var(--bg-card) 92%)">' + esc(initials) + "</div>" +
+          '<div class="mbody">' +
+            '<div class="mtop"><span class="brand">' + esc(m.author || "unknown") + '</span><span class="mname">' + esc(m.name) + "</span></div>" +
+            '<div class="mdesc">' + esc(m.desc) + "</div>" +
+            '<div class="tagrow">' + tags + "</div>" +
+            '<div class="mfoot">' + (m.url ? '<a class="btn btn-secondary" href="' + esc(m.url) + '" download>⤓ Download</a>' : "") + '<span class="by">slug: ' + esc(m.slug || "-") + "</span></div>" +
+          "</div>";
+        card.querySelectorAll(".pill.cat,.pill.tag").forEach((p) => p.onclick = () => { sel.tag = p.textContent; page = 1; buildFilters(); render(); window.scrollTo({ top: 0 }); });
+        const hp = card.querySelector(".pill.host"); if (hp) hp.onclick = () => { sel.host = m.host; page = 1; buildFilters(); render(); window.scrollTo({ top: 0 }); };
+        card.querySelector(".brand").onclick = () => { sel.brand = m.author; page = 1; buildFilters(); render(); window.scrollTo({ top: 0 }); };
+        list.appendChild(card);
+      }
+      const pager = $("pager"); pager.innerHTML = "";
+      if (pages > 1) {
+        const mk = (label, p, on) => { const b = document.createElement("div"); b.className = "pg" + (on ? " on" : ""); b.textContent = label; b.onclick = () => { page = p; render(); window.scrollTo({ top: 0 }); }; pager.appendChild(b); };
+        if (page > 1) mk("‹", page - 1, false);
+        for (let p = 1; p <= pages; p++) mk(String(p), p, p === page);
+        if (page < pages) mk("›", page + 1, false);
+      }
+    }
+
+    $("q").addEventListener("input", () => { page = 1; render(); });
+    $("sort").addEventListener("change", () => { seed = (seed + 1) | 0; page = 1; render(); });
+
+    fetch("registry.json", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        MODULES = Array.isArray(d.modules) ? d.modules : [];
+        $("buildline").textContent = MODULES.length + " modules · zpwr-fx · zpwr-synth · zpwr-midi-fx · registry.json";
+        buildFilters(); render();
+      })
+      .catch(() => { $("empty").style.display = ""; $("empty").innerHTML = "could not load <b>registry.json</b>."; });
+  </script>
 </body>
 </html>

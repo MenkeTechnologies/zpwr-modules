@@ -4,6 +4,51 @@
   "updated": "2026-06-20",
   "modules": [
     {
+      "slug": "amp-stack",
+      "name": "Amp Stack",
+      "author": "MenkeTechnologies",
+      "category": "Distortion",
+      "tags": [
+        "guitar",
+        "amp",
+        "fuzz"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Fuzz into an amp sim and cab for a full guitar stack.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/amp-stack.zfxmod"
+    },
+    {
+      "slug": "auto-funk",
+      "name": "Auto Funk",
+      "author": "MenkeTechnologies",
+      "category": "Filter",
+      "tags": [
+        "filter",
+        "wah",
+        "funk"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Envelope-following auto-wah into a comb for funk leads.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/auto-funk.zfxmod"
+    },
+    {
+      "slug": "bit-smasher",
+      "name": "Bit Smasher",
+      "author": "MenkeTechnologies",
+      "category": "Distortion",
+      "tags": [
+        "bitcrush",
+        "clip",
+        "harsh"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Bitcrush into a clipper for aggressive digital noise.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/bit-smasher.zfxmod"
+    },
+    {
       "slug": "clean-boost",
       "name": "Clean Boost",
       "author": "MenkeTechnologies",
@@ -14,8 +59,246 @@
       ],
       "license": "CC0",
       "host": "zpwr-fx",
-      "desc": "Two-stage clean gain boost (In L -> +6 dB -> trim). A minimal example user module.",
+      "desc": "Two-stage clean gain boost with a final trim.",
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/clean-boost.zfxmod"
+    },
+    {
+      "slug": "comp-limit",
+      "name": "Comp Limit",
+      "author": "MenkeTechnologies",
+      "category": "Dynamics",
+      "tags": [
+        "bus",
+        "compressor",
+        "limiter"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Series compressor and limiter for a controlled bus.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/comp-limit.zfxmod"
+    },
+    {
+      "slug": "crush-master",
+      "name": "Crush Master",
+      "author": "MenkeTechnologies",
+      "category": "Dynamics",
+      "tags": [
+        "master",
+        "ott",
+        "loud"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "OTT-style multiband upward compression and a limiter.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/crush-master.zfxmod"
+    },
+    {
+      "slug": "dj-sweep",
+      "name": "DJ Sweep",
+      "author": "MenkeTechnologies",
+      "category": "Filter",
+      "tags": [
+        "dj",
+        "filter",
+        "performance"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Single-knob DJ filter into a delay for build-ups.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/dj-sweep.zfxmod"
+    },
+    {
+      "slug": "drum-bus-glue",
+      "name": "Drum Bus Glue",
+      "author": "MenkeTechnologies",
+      "category": "Dynamics",
+      "tags": [
+        "drums",
+        "bus",
+        "glue"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Transient shape into bus compression and saturation.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/drum-bus-glue.zfxmod"
+    },
+    {
+      "slug": "dub-echo",
+      "name": "Dub Echo",
+      "author": "MenkeTechnologies",
+      "category": "Delay",
+      "tags": [
+        "delay",
+        "dub",
+        "echo"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Filtered dub delay with feedback saturation.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/dub-echo.zfxmod"
+    },
+    {
+      "slug": "duck-verb",
+      "name": "Duck Verb",
+      "author": "MenkeTechnologies",
+      "category": "Reverb",
+      "tags": [
+        "reverb",
+        "duck",
+        "sidechain"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Sidechain-ducked reverb that breathes with the input.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/duck-verb.zfxmod"
+    },
+    {
+      "slug": "exciter-polish",
+      "name": "Exciter Polish",
+      "author": "MenkeTechnologies",
+      "category": "Distortion",
+      "tags": [
+        "exciter",
+        "polish",
+        "master"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "High-frequency exciter into a gentle compressor.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/exciter-polish.zfxmod"
+    },
+    {
+      "slug": "flange-drive",
+      "name": "Flange Drive",
+      "author": "MenkeTechnologies",
+      "category": "Modulation",
+      "tags": [
+        "flanger",
+        "drive"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Flanger pushed into an overdrive for jet-engine grit.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/flange-drive.zfxmod"
+    },
+    {
+      "slug": "formant-vox",
+      "name": "Formant Vox",
+      "author": "MenkeTechnologies",
+      "category": "Filter",
+      "tags": [
+        "formant",
+        "vocal",
+        "pad"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Vowel formant filter into a chorus for vocal pads.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/formant-vox.zfxmod"
+    },
+    {
+      "slug": "gated-slam",
+      "name": "Gated Slam",
+      "author": "MenkeTechnologies",
+      "category": "Reverb",
+      "tags": [
+        "drums",
+        "gated",
+        "80s"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Hard compression into a gated reverb for big drums.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/gated-slam.zfxmod"
+    },
+    {
+      "slug": "glass-filter",
+      "name": "Glass Filter",
+      "author": "MenkeTechnologies",
+      "category": "Filter",
+      "tags": [
+        "filter",
+        "resonant"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Resonant filter sweep into a graphic EQ tilt.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/glass-filter.zfxmod"
+    },
+    {
+      "slug": "grain-cloud",
+      "name": "Grain Cloud",
+      "author": "MenkeTechnologies",
+      "category": "Delay",
+      "tags": [
+        "granular",
+        "texture",
+        "ambient"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Granular delay into a grain reverb for textures.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/grain-cloud.zfxmod"
+    },
+    {
+      "slug": "lo-fi-tape",
+      "name": "Lo-Fi Tape",
+      "author": "MenkeTechnologies",
+      "category": "Distortion",
+      "tags": [
+        "lofi",
+        "tape",
+        "vintage"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Bitcrush, drive and a filtered delay for dusty character.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/lo-fi-tape.zfxmod"
+    },
+    {
+      "slug": "shimmer-wash",
+      "name": "Shimmer Wash",
+      "author": "MenkeTechnologies",
+      "category": "Reverb",
+      "tags": [
+        "reverb",
+        "ambient",
+        "shimmer"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Plate reverb into a freeze verb for an endless wash.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/shimmer-wash.zfxmod"
+    },
+    {
+      "slug": "vocal-chain",
+      "name": "Vocal Chain",
+      "author": "MenkeTechnologies",
+      "category": "Dynamics",
+      "tags": [
+        "vocal",
+        "dynamics",
+        "eq"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "De-ess, compress and EQ for a finished vocal.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/vocal-chain.zfxmod"
+    },
+    {
+      "slug": "wide-chorus-verb",
+      "name": "Wide Chorus Verb",
+      "author": "MenkeTechnologies",
+      "category": "Modulation",
+      "tags": [
+        "chorus",
+        "reverb",
+        "wide"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Ensemble chorus feeding a modulated reverb for width.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/wide-chorus-verb.zfxmod"
     }
   ]
 }
