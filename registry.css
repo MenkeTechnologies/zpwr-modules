@@ -1,0 +1,25 @@
+/* registry-specific tweaks layered on the app-store store.css */
+
+mark.fzf-hl {
+  background: transparent;
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow);
+  font-weight: 700;
+}
+
+/* signal chain on the module detail page */
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 6px 0 4px; }
+.chain .node {
+  padding: 7px 13px; border: 1px solid var(--cyan); border-radius: 3px; color: var(--cyan);
+  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1px;
+  background: rgba(5, 217, 232, 0.05); box-shadow: 0 0 8px var(--cyan-dim);
+}
+.chain .io { color: var(--accent); border-color: var(--accent); background: rgba(255, 42, 109, 0.05); }
+.chain .arrow { color: var(--text-muted); font-size: 16px; }
+
+.det-table { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; font-size: 13px; margin-top: 4px; }
+.det-table dt { color: var(--text-muted); text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+.det-table dd { color: var(--text-dim); margin: 0; }
+
+/* module cards: glyph keeps the store look; foot shows host instead of price */
+.product-card .p-host { color: var(--accent); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }

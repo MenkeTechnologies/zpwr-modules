@@ -1,17 +1,17 @@
 /**
- * stryke docs — theme / CRT / neon / color-scheme toggles.
- * Vendored and simplified from audio_haxor/docs/hud-theme.js.
- * Storage keys live under the `zpwr-modules-hud-*` namespace so the two projects
- * can't clobber each other if ever opened from the same origin.
+ * MenkeTechnologies app store — theme / CRT / neon / color-scheme toggles.
+ * Vendored from strykelang/docs/hud-theme.js.
+ * Storage keys live under the `appstore-hud-*` namespace so the store and the
+ * docs sites can't clobber each other if ever opened from the same origin.
  */
 (function () {
   'use strict';
 
   var STORAGE = {
-    theme: 'zpwr-modules-hud-theme',
-    crt: 'zpwr-modules-hud-crt',
-    neon: 'zpwr-modules-hud-neon',
-    scheme: 'zpwr-modules-hud-scheme',
+    theme: 'appstore-hud-theme',
+    crt: 'appstore-hud-crt',
+    neon: 'appstore-hud-neon',
+    scheme: 'appstore-hud-scheme',
   };
 
   var SCHEME_VAR_KEYS = [
