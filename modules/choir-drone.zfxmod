@@ -1,0 +1,137 @@
+{
+  "zmod": 1,
+  "name": "Choir Drone",
+  "category": "Oscillator",
+  "desc": "Wide detuned drone widened by an ensemble chorus.",
+  "overview": "DroneOsc's full 16-voice stack widened by an ensemble chorus into a breathing, choir-like wall. A lush evolving pad/drone with no input - a one-block ambient bed; set the root with Freq.",
+  "blocks": [
+    {
+      "type": "DroneOsc",
+      "category": "Oscillator",
+      "desc": "Massive evolving drone generator - the most powerful oscillator in the pack. Up to 16 detuned saw voices are stacked into octaves, fifths or chords, layered with a sub oscillator and an octave shimmer, then drifted by a slow per-voice wander and shaped by a moving resonant low-pass for an endless, never-repeating texture. It free-runs at Freq as a standalone drone, or tracks the keyboard when a Note (Pitch CV) is patched into in0; in1 adds to the tone. Voices sets the unison size, Detune the spread, Stack the interval pattern (unison / octaves / fifths / major / minor / wide), Sub and Shimmer the octave layers, Drift the evolution depth, and Tone the brightness. The harmonic-rich core of any ambient, cinematic or doom-drone patch.",
+      "ins": [
+        "Pitch (CV)",
+        "FM"
+      ],
+      "numIns": 2,
+      "params": [
+        {
+          "name": "Freq",
+          "value": 55.0,
+          "min": 16.0,
+          "max": 2000.0,
+          "def": 55.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Voices",
+          "value": 7.0,
+          "min": 1.0,
+          "max": 16.0,
+          "def": 7.0,
+          "unit": ""
+        },
+        {
+          "name": "Detune",
+          "value": 0.449999988079071,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.449999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Sub",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Shimmer",
+          "value": 0.25,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.25,
+          "unit": ""
+        },
+        {
+          "name": "Stack",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 5.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Drift",
+          "value": 0.349999994039536,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.349999994039536,
+          "unit": ""
+        },
+        {
+          "name": "Tone",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Ensemble",
+      "category": "Delay",
+      "desc": "Three-voice string-machine chorus: one LFO modulates three delay taps at evenly spread phases, summing into a lush, wide thickening richer than the single-voice Chorus. Rate and Depth set the swirl and Mix the blend. Classic for pads, strings and synth-brass.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Rate",
+          "value": 0.600000023841858,
+          "min": 0.050000000745058,
+          "max": 4.0,
+          "def": 0.600000023841858,
+          "unit": "Hz"
+        },
+        {
+          "name": "Depth",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "drone",
+    "pad",
+    "choir"
+  ],
+  "host": "zpwr-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"DroneOsc\",\r\n      \"in\": [\r\n        [],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        55.0,\r\n        7.0,\r\n        0.449999988079071,\r\n        0.5,\r\n        0.25,\r\n        0.0,\r\n        0.349999994039536,\r\n        0.600000023841858,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Ensemble\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.600000023841858,\r\n        0.600000023841858,\r\n        0.5,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "Out"
+    }
+  ],
+  "nodeCount": 2
+}

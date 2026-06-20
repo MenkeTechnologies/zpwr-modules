@@ -1,0 +1,145 @@
+{
+  "zmod": 1,
+  "name": "Doom Drone",
+  "category": "Oscillator",
+  "desc": "Massive 16-voice drone into a vast plate reverb.",
+  "overview": "The 16-voice DroneOsc set to a wide interval stack and deep drift, poured into a huge plate reverb. A bottomless, slowly-evolving doom/ambient drone from a single block - free-running, no input needed; tweak DroneOsc's Freq for the root.",
+  "blocks": [
+    {
+      "type": "DroneOsc",
+      "category": "Oscillator",
+      "desc": "Massive evolving drone generator - the most powerful oscillator in the pack. Up to 16 detuned saw voices are stacked into octaves, fifths or chords, layered with a sub oscillator and an octave shimmer, then drifted by a slow per-voice wander and shaped by a moving resonant low-pass for an endless, never-repeating texture. It free-runs at Freq as a standalone drone, or tracks the keyboard when a Note (Pitch CV) is patched into in0; in1 adds to the tone. Voices sets the unison size, Detune the spread, Stack the interval pattern (unison / octaves / fifths / major / minor / wide), Sub and Shimmer the octave layers, Drift the evolution depth, and Tone the brightness. The harmonic-rich core of any ambient, cinematic or doom-drone patch.",
+      "ins": [
+        "Pitch (CV)",
+        "FM"
+      ],
+      "numIns": 2,
+      "params": [
+        {
+          "name": "Freq",
+          "value": 55.0,
+          "min": 16.0,
+          "max": 2000.0,
+          "def": 55.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Voices",
+          "value": 7.0,
+          "min": 1.0,
+          "max": 16.0,
+          "def": 7.0,
+          "unit": ""
+        },
+        {
+          "name": "Detune",
+          "value": 0.449999988079071,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.449999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Sub",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Shimmer",
+          "value": 0.25,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.25,
+          "unit": ""
+        },
+        {
+          "name": "Stack",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 5.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Drift",
+          "value": 0.349999994039536,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.349999994039536,
+          "unit": ""
+        },
+        {
+          "name": "Tone",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Plate",
+      "category": "Reverb",
+      "desc": "Plate reverb: the input runs through four series allpass diffusers and then into four parallel damped feedback combs that are summed for the wet tail. Decay sets the comb feedback (0 to 0.95), Damp is a one-pole low-pass inside the feedback that darkens later reflections, Size scales the delay-line lengths, and Mix blends dry/wet. Dense, smooth metallic decay suited to plates and tight ambiences.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Size",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Decay",
+          "value": 0.699999988079071,
+          "min": 0.0,
+          "max": 0.949999988079071,
+          "def": 0.699999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Damp",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "drone",
+    "ambient",
+    "doom"
+  ],
+  "host": "zpwr-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"DroneOsc\",\r\n      \"in\": [\r\n        [],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        55.0,\r\n        7.0,\r\n        0.449999988079071,\r\n        0.5,\r\n        0.25,\r\n        0.0,\r\n        0.349999994039536,\r\n        0.600000023841858,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Plate\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.600000023841858,\r\n        0.699999988079071,\r\n        0.400000005960464,\r\n        0.300000011920929,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "Out"
+    }
+  ],
+  "nodeCount": 2
+}

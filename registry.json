@@ -64,6 +64,21 @@
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/chance-arp.zmfxmod"
     },
     {
+      "slug": "choir-drone",
+      "name": "Choir Drone",
+      "author": "MenkeTechnologies",
+      "category": "Oscillator",
+      "tags": [
+        "drone",
+        "pad",
+        "choir"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Wide detuned drone widened by an ensemble chorus.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/choir-drone.zfxmod"
+    },
+    {
       "slug": "chord-arp",
       "name": "Chord Arp",
       "author": "MenkeTechnologies",
@@ -151,6 +166,21 @@
       "host": "zpwr-fx",
       "desc": "Single-knob DJ filter into a delay for build-ups.",
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/dj-sweep.zfxmod"
+    },
+    {
+      "slug": "doom-drone",
+      "name": "Doom Drone",
+      "author": "MenkeTechnologies",
+      "category": "Oscillator",
+      "tags": [
+        "drone",
+        "ambient",
+        "doom"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Massive 16-voice drone into a vast plate reverb.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/doom-drone.zfxmod"
     },
     {
       "slug": "drum-bus-glue",
@@ -421,6 +451,21 @@
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/scale-lock.zmfxmod"
     },
     {
+      "slug": "shimmer-drone",
+      "name": "Shimmer Drone",
+      "author": "MenkeTechnologies",
+      "category": "Oscillator",
+      "tags": [
+        "drone",
+        "shimmer",
+        "cinematic"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Detuned drone with an octave shimmer and modulated reverb.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/shimmer-drone.zfxmod"
+    },
+    {
       "slug": "shimmer-wash",
       "name": "Shimmer Wash",
       "author": "MenkeTechnologies",
@@ -449,6 +494,21 @@
       "host": "zpwr-midi-fx",
       "desc": "Strummed chords with velocity dynamics.",
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/strum-pad.zmfxmod"
+    },
+    {
+      "slug": "sub-monolith",
+      "name": "Sub Monolith",
+      "author": "MenkeTechnologies",
+      "category": "Oscillator",
+      "tags": [
+        "drone",
+        "sub",
+        "bass"
+      ],
+      "license": "CC0",
+      "host": "zpwr-fx",
+      "desc": "Sub-heavy drone driven into harmonic saturation.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/sub-monolith.zfxmod"
     },
     {
       "slug": "swing-accent",

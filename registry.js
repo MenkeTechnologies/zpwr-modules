@@ -106,17 +106,20 @@
   function pVal(p) { return fmtNum(p.value) + (p.unit ? ' ' + esc(p.unit) : ''); }
   function pRange(p) { return fmtNum(p.min) + ' … ' + fmtNum(p.max) + (p.unit ? ' ' + esc(p.unit) : ''); }
 
-  function chainHtml(blocks) {
-    var parts = ['<span class="node io">In L</span>']
+  function chainHtml(blocks, isGen) {
+    var parts = (isGen ? [] : ['<span class="node io">In L</span>'])
       .concat(blocks.map(function (b) { return '<span class="node">' + esc(b.type) + '</span>'; }))
       .concat(['<span class="node io">Out</span>']);
     return parts.join('<span class="arrow">→</span>');
   }
 
   function ioHtml(z, blocks) {
-    var ins = (z.inPorts || []).map(function (p) {
-      return '<div class="io-item"><span class="jack">' + esc(p.label || ('src ' + p.src)) + '</span><span class="role">' + esc(p.role || 'input') + '</span></div>';
-    }).join('') || '<div class="io-item"><span class="jack">In L</span><span class="role">audio</span></div>';
+    var isGen = !(z.inPorts && z.inPorts.length);
+    var ins = isGen
+      ? '<div class="io-item"><span class="jack">none</span><span class="role">sound generator</span></div>'
+      : z.inPorts.map(function (p) {
+          return '<div class="io-item"><span class="jack">' + esc(p.label || ('src ' + p.src)) + '</span><span class="role">' + esc(p.role || 'input') + '</span></div>';
+        }).join('');
     var outs = (z.outPorts || []).map(function (p) {
       var t = (blocks[p.node] && blocks[p.node].type) || ('block ' + p.node);
       return '<div class="io-item"><span class="jack">' + esc(p.label || 'Out') + '</span><span class="role">from ' + esc(t) + '</span></div>';
@@ -185,8 +188,9 @@
       }
       var html = '';
       html += '<section class="tutorial-section"><h2>DSP Overview</h2><p class="detail-overview">' + esc(z.overview || m.desc || '') + '</p></section>';
-      html += '<section class="tutorial-section"><h2>Signal Chain</h2><div class="chain">' + chainHtml(blocks) + '</div>' +
-        '<p class="meta">' + (z.nodeCount || blocks.length) + ' blocks in series — In L feeds the first, the last feeds Out.</p></section>';
+      var isGen = !(z.inPorts && z.inPorts.length);
+      html += '<section class="tutorial-section"><h2>Signal Chain</h2><div class="chain">' + chainHtml(blocks, isGen) + '</div>' +
+        '<p class="meta">' + (z.nodeCount || blocks.length) + ' blocks in series — ' + (isGen ? 'a free-running sound generator (no input); the last block feeds Out.' : 'In L feeds the first, the last feeds Out.') + '</p></section>';
       html += '<section class="tutorial-section"><h2>Inputs &amp; Outputs</h2>' + ioHtml(z, blocks) + '</section>';
       html += '<section class="tutorial-section"><h2>Blocks in this Module</h2>' + blocks.map(blockHtml).join('') + '</section>';
       html += '<section class="tutorial-section"><h2>Details</h2><dl class="det-table">' +

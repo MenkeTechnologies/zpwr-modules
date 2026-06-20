@@ -1,0 +1,153 @@
+{
+  "zmod": 1,
+  "name": "Shimmer Drone",
+  "category": "Oscillator",
+  "desc": "Detuned drone with an octave shimmer and modulated reverb.",
+  "overview": "DroneOsc stacked in octaves and fifths with its octave-up shimmer pushed high, then smeared through a modulated reverb for a glistening, rising texture. Endless cinematic shimmer; free-running, set the root with Freq.",
+  "blocks": [
+    {
+      "type": "DroneOsc",
+      "category": "Oscillator",
+      "desc": "Massive evolving drone generator - the most powerful oscillator in the pack. Up to 16 detuned saw voices are stacked into octaves, fifths or chords, layered with a sub oscillator and an octave shimmer, then drifted by a slow per-voice wander and shaped by a moving resonant low-pass for an endless, never-repeating texture. It free-runs at Freq as a standalone drone, or tracks the keyboard when a Note (Pitch CV) is patched into in0; in1 adds to the tone. Voices sets the unison size, Detune the spread, Stack the interval pattern (unison / octaves / fifths / major / minor / wide), Sub and Shimmer the octave layers, Drift the evolution depth, and Tone the brightness. The harmonic-rich core of any ambient, cinematic or doom-drone patch.",
+      "ins": [
+        "Pitch (CV)",
+        "FM"
+      ],
+      "numIns": 2,
+      "params": [
+        {
+          "name": "Freq",
+          "value": 55.0,
+          "min": 16.0,
+          "max": 2000.0,
+          "def": 55.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Voices",
+          "value": 7.0,
+          "min": 1.0,
+          "max": 16.0,
+          "def": 7.0,
+          "unit": ""
+        },
+        {
+          "name": "Detune",
+          "value": 0.449999988079071,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.449999988079071,
+          "unit": ""
+        },
+        {
+          "name": "Sub",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Shimmer",
+          "value": 0.25,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.25,
+          "unit": ""
+        },
+        {
+          "name": "Stack",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 5.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Drift",
+          "value": 0.349999994039536,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.349999994039536,
+          "unit": ""
+        },
+        {
+          "name": "Tone",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "ModVerb",
+      "category": "Reverb",
+      "desc": "Reverb whose room size is continuously modulated by a sine LFO, detuning the tail for a chorused, shimmering character. Size sets the base room length and Damp the high-frequency decay, Rate sets the LFO speed (0.05-5 Hz) and Depth how far it sweeps the size, and Mix blends the moving reverb against the dry signal. Adds motion and width to otherwise static reverb tails.",
+      "ins": [
+        "Audio"
+      ],
+      "numIns": 1,
+      "params": [
+        {
+          "name": "Size",
+          "value": 0.600000023841858,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.600000023841858,
+          "unit": ""
+        },
+        {
+          "name": "Damp",
+          "value": 0.400000005960464,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.400000005960464,
+          "unit": ""
+        },
+        {
+          "name": "Rate",
+          "value": 0.5,
+          "min": 0.050000000745058,
+          "max": 5.0,
+          "def": 0.5,
+          "unit": "Hz"
+        },
+        {
+          "name": "Depth",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        },
+        {
+          "name": "Mix",
+          "value": 0.300000011920929,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.300000011920929,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "drone",
+    "shimmer",
+    "cinematic"
+  ],
+  "host": "zpwr-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"DroneOsc\",\r\n      \"in\": [\r\n        [],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        55.0,\r\n        7.0,\r\n        0.449999988079071,\r\n        0.5,\r\n        0.25,\r\n        0.0,\r\n        0.349999994039536,\r\n        0.600000023841858,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"ModVerb\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.600000023841858,\r\n        0.400000005960464,\r\n        0.5,\r\n        0.300000011920929,\r\n        0.300000011920929,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "Out"
+    }
+  ],
+  "nodeCount": 2
+}
