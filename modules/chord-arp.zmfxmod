@@ -1,0 +1,162 @@
+{
+  "zmod": 1,
+  "name": "Chord Arp",
+  "category": "Sequencing",
+  "desc": "Turn single notes into chords, then arpeggiate them.",
+  "overview": "Plays a held note as a full chord and immediately arpeggiates it: the Chord block voices the harmony, the Arp block cycles those notes at a synced rate. One finger becomes a moving chord pattern - the bread and butter of electronic leads.",
+  "blocks": [
+    {
+      "type": "Chord",
+      "category": "Harmony",
+      "desc": "Turns each incoming note into a chord (165 types) with inversion, spread, octave doubling and strum.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Type",
+          "value": 5.0,
+          "min": 0.0,
+          "max": 165.0,
+          "def": 5.0,
+          "unit": ""
+        },
+        {
+          "name": "Inversion",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 4.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Spread",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Octave x2",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Transpose",
+          "value": 0.0,
+          "min": -24.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "st"
+        },
+        {
+          "name": "Strum",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 200.0,
+          "def": 0.0,
+          "unit": "ms"
+        }
+      ]
+    },
+    {
+      "type": "Arp",
+      "category": "Sequencing",
+      "desc": "Arpeggiator: cycles held notes through a pattern at a synced rate with gate, octaves, swing and step count. Latch holds the chord so it keeps arpeggiating after the keys are released (the next key starts a new chord).",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Mode",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 8.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Rate",
+          "value": 4.0,
+          "min": 0.0,
+          "max": 11.0,
+          "def": 4.0,
+          "unit": ""
+        },
+        {
+          "name": "Gate",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Octaves",
+          "value": 1.0,
+          "min": 1.0,
+          "max": 4.0,
+          "def": 1.0,
+          "unit": ""
+        },
+        {
+          "name": "Swing",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 0.75,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Steps",
+          "value": 16.0,
+          "min": 1.0,
+          "max": 16.0,
+          "def": 16.0,
+          "unit": ""
+        },
+        {
+          "name": "Latch",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "chord",
+    "arp",
+    "lead"
+  ],
+  "host": "zpwr-midi-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"Chord\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        5.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Arp\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.0,\r\n        4.0,\r\n        0.5,\r\n        1.0,\r\n        0.0,\r\n        16.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "MIDI In",
+      "role": "midi"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "MIDI Out"
+    }
+  ],
+  "nodeCount": 2
+}

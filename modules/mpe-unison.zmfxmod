@@ -1,0 +1,82 @@
+{
+  "zmod": 1,
+  "name": "MPE Unison",
+  "category": "Routing",
+  "desc": "MPE expression converted into a unison stack.",
+  "overview": "Converts MPE per-note expression into standard controllers, then fans each note into a detuned unison stack for width. Bring expressive MPE playing to any synth as a fat, wide voice.",
+  "blocks": [
+    {
+      "type": "MPEConvert",
+      "category": "Voicing",
+      "desc": "Assigns each note its own rotating channel for per-note MPE expression.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Voices",
+          "value": 15.0,
+          "min": 2.0,
+          "max": 15.0,
+          "def": 15.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "MidiUnison",
+      "category": "Voicing",
+      "desc": "Doubles each note into multiple voices, optionally spread across channels.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Voices",
+          "value": 2.0,
+          "min": 1.0,
+          "max": 4.0,
+          "def": 2.0,
+          "unit": ""
+        },
+        {
+          "name": "Spread",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "mpe",
+    "unison",
+    "expressive"
+  ],
+  "host": "zpwr-midi-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"MPEConvert\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        15.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"MidiUnison\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        2.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "MIDI In",
+      "role": "midi"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "MIDI Out"
+    }
+  ],
+  "nodeCount": 2
+}

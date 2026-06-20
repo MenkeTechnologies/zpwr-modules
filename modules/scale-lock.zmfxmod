@@ -1,0 +1,90 @@
+{
+  "zmod": 1,
+  "name": "Scale Lock",
+  "category": "Harmony",
+  "desc": "Quantize to a scale, then transpose in key.",
+  "overview": "A safety net for melodic playing: every incoming note is snapped to the nearest degree of the chosen scale, then transposed by a fixed amount that stays in key. Play wrong notes and they land right.",
+  "blocks": [
+    {
+      "type": "Scale",
+      "category": "Harmony",
+      "desc": "Quantizes incoming notes to the nearest degree of the chosen root and scale.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Root",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 11.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Scale",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 19.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Transpose",
+      "category": "Harmony",
+      "desc": "Shifts every note by a fixed semitone amount plus a modulatable offset.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Semitones",
+          "value": 0.0,
+          "min": -24.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "st"
+        },
+        {
+          "name": "Mod Amt",
+          "value": 0.0,
+          "min": -24.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "st"
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "scale",
+    "quantize",
+    "key"
+  ],
+  "host": "zpwr-midi-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"Scale\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.0,\r\n        1.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Transpose\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "MIDI In",
+      "role": "midi"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "MIDI Out"
+    }
+  ],
+  "nodeCount": 2
+}

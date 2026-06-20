@@ -1,0 +1,82 @@
+{
+  "zmod": 1,
+  "name": "Cluster Drone",
+  "category": "Harmony",
+  "desc": "Symmetric tone clusters over a pedal root.",
+  "overview": "Adds symmetric tone-cluster voices above and below each note for tension, then layers a fixed pedal-root drone underneath. A dense, cinematic texture generator from a single key.",
+  "blocks": [
+    {
+      "type": "MidiCluster",
+      "category": "Harmony",
+      "desc": "Adds symmetric tone-cluster voices above and below each note.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Width",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 4.0,
+          "def": 1.0,
+          "unit": ""
+        },
+        {
+          "name": "Spread",
+          "value": 1.0,
+          "min": 1.0,
+          "max": 4.0,
+          "def": 1.0,
+          "unit": "st"
+        }
+      ]
+    },
+    {
+      "type": "Drone",
+      "category": "Harmony",
+      "desc": "Doubles every note with a fixed pedal root.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Root",
+          "value": 36.0,
+          "min": 0.0,
+          "max": 127.0,
+          "def": 36.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "cluster",
+    "drone",
+    "cinematic"
+  ],
+  "host": "zpwr-midi-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"MidiCluster\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        1.0,\r\n        1.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Drone\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        36.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "MIDI In",
+      "role": "midi"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "MIDI Out"
+    }
+  ],
+  "nodeCount": 2
+}

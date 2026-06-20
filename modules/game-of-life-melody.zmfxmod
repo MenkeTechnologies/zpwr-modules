@@ -1,0 +1,114 @@
+{
+  "zmod": 1,
+  "name": "Game of Life Melody",
+  "category": "Sequencing",
+  "desc": "Conway's Game of Life sequencer, scale-locked.",
+  "overview": "Conway's Game of Life drives an 8x8 melodic sequencer - gliders and blinkers become ever-shifting note patterns - and a scale block keeps every emergent note musical. Endless generative melody from a cellular automaton.",
+  "blocks": [
+    {
+      "type": "MidiGameOfLife",
+      "category": "Sequencing",
+      "desc": "Conway's Game of Life MIDI sequencer: an 8x8 cell grid evolves under the B3/S23 rule; each clock step reads the next column and plays a note for every live cell (row maps to a scale degree from Root/Scale), and a full 8-step sweep advances one generation. Gliders, blinkers and still-lifes become ever-shifting melodic and harmonic patterns. Density sets the random fill when the grid (re)seeds. The MIDI-note counterpart to the GameOfLife CV block.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Root",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 11.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Scale",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 19.0,
+          "def": 1.0,
+          "unit": ""
+        },
+        {
+          "name": "Rate",
+          "value": 4.0,
+          "min": 0.0,
+          "max": 11.0,
+          "def": 4.0,
+          "unit": ""
+        },
+        {
+          "name": "Gate",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Density",
+          "value": 0.349999994039536,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.349999994039536,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Scale",
+      "category": "Harmony",
+      "desc": "Quantizes incoming notes to the nearest degree of the chosen root and scale.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Root",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 11.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Scale",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 19.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "generative",
+    "automaton",
+    "melody"
+  ],
+  "host": "zpwr-midi-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"MidiGameOfLife\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.0,\r\n        1.0,\r\n        4.0,\r\n        0.5,\r\n        0.349999994039536,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Scale\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.0,\r\n        1.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "MIDI In",
+      "role": "midi"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "MIDI Out"
+    }
+  ],
+  "nodeCount": 2
+}

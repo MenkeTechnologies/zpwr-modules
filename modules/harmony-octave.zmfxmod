@@ -1,0 +1,98 @@
+{
+  "zmod": 1,
+  "name": "Harmony Octave",
+  "category": "Harmony",
+  "desc": "Fixed-interval harmonies doubled at the octave.",
+  "overview": "Adds up to three fixed-interval harmony voices to each note, then doubles the result an octave away for thickness. Turns a monophonic line into a rich harmonized stack - great for synth brass and leads.",
+  "blocks": [
+    {
+      "type": "Harmonize",
+      "category": "Harmony",
+      "desc": "Adds up to three fixed-interval harmony voices to each note.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Interval 1",
+          "value": 7.0,
+          "min": -24.0,
+          "max": 24.0,
+          "def": 7.0,
+          "unit": "st"
+        },
+        {
+          "name": "Interval 2",
+          "value": 0.0,
+          "min": -24.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "st"
+        },
+        {
+          "name": "Interval 3",
+          "value": 0.0,
+          "min": -24.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "st"
+        }
+      ]
+    },
+    {
+      "type": "Octave",
+      "category": "Harmony",
+      "desc": "Doubles each note up and/or down by whole octaves.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Up",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 3.0,
+          "def": 1.0,
+          "unit": ""
+        },
+        {
+          "name": "Down",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 3.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "harmony",
+    "octave",
+    "thick"
+  ],
+  "host": "zpwr-midi-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"Harmonize\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        7.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Octave\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        1.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "MIDI In",
+      "role": "midi"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "MIDI Out"
+    }
+  ],
+  "nodeCount": 2
+}

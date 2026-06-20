@@ -1,0 +1,159 @@
+{
+  "zmod": 1,
+  "name": "Strum Pad",
+  "category": "Harmony",
+  "desc": "Strummed chords with velocity dynamics.",
+  "overview": "Voices each note as a chord and strums it like a guitar (notes spread slightly in time), then a velocity stage sets the dynamics. Ideal for pads, plucked synths and acoustic-style parts.",
+  "blocks": [
+    {
+      "type": "Chord",
+      "category": "Harmony",
+      "desc": "Turns each incoming note into a chord (165 types) with inversion, spread, octave doubling and strum.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Type",
+          "value": 5.0,
+          "min": 0.0,
+          "max": 165.0,
+          "def": 5.0,
+          "unit": ""
+        },
+        {
+          "name": "Inversion",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 4.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Spread",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Octave x2",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Transpose",
+          "value": 0.0,
+          "min": -24.0,
+          "max": 24.0,
+          "def": 0.0,
+          "unit": "st"
+        },
+        {
+          "name": "Strum",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 200.0,
+          "def": 0.0,
+          "unit": "ms"
+        }
+      ]
+    },
+    {
+      "type": "Strum",
+      "category": "Sequencing",
+      "desc": "Spreads a chord's notes over time, up or down, like a guitar strum.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Spread",
+          "value": 20.0,
+          "min": 0.0,
+          "max": 200.0,
+          "def": 20.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Direction",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Velocity",
+      "category": "Dynamics",
+      "desc": "Scales and offsets note velocity, with a modulation amount.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Scale",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 2.0,
+          "def": 1.0,
+          "unit": ""
+        },
+        {
+          "name": "Offset",
+          "value": 0.0,
+          "min": -64.0,
+          "max": 64.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Mod Amt",
+          "value": 0.0,
+          "min": -64.0,
+          "max": 64.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "chord",
+    "strum",
+    "pad"
+  ],
+  "host": "zpwr-midi-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"Chord\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        5.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Strum\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        20.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Velocity\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1001,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        1.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "MIDI In",
+      "role": "midi"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 2,
+      "label": "MIDI Out"
+    }
+  ],
+  "nodeCount": 3
+}

@@ -1,0 +1,106 @@
+{
+  "zmod": 1,
+  "name": "Trill Ornament",
+  "category": "Sequencing",
+  "desc": "Baroque trill into a mordent ornament.",
+  "overview": "Stacks two classical ornaments: a trill rapidly alternates the note with the one above, then a mordent adds a quick lower-neighbour flick. Instant baroque articulation for harpsichord and string lines.",
+  "blocks": [
+    {
+      "type": "Trill",
+      "category": "Sequencing",
+      "desc": "Keyboard trill: while a note is held, alternates rapidly between it and the note Interval semitones above, at Rate.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Rate",
+          "value": 10.0,
+          "min": 1.0,
+          "max": 50.0,
+          "def": 10.0,
+          "unit": "Hz"
+        },
+        {
+          "name": "Interval",
+          "value": 2.0,
+          "min": 1.0,
+          "max": 12.0,
+          "def": 2.0,
+          "unit": "st"
+        },
+        {
+          "name": "Gate",
+          "value": 0.5,
+          "min": 0.050000000745058,
+          "max": 0.949999988079071,
+          "def": 0.5,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Mordent",
+      "category": "Sequencing",
+      "desc": "One-shot ornament: each struck note plays principal -> auxiliary -> principal at the attack, then sustains, the single-flick counterpart to the continuous Trill.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Time",
+          "value": 40.0,
+          "min": 5.0,
+          "max": 150.0,
+          "def": 40.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Interval",
+          "value": 2.0,
+          "min": 1.0,
+          "max": 12.0,
+          "def": 2.0,
+          "unit": "st"
+        },
+        {
+          "name": "Direction",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "ornament",
+    "trill",
+    "classical"
+  ],
+  "host": "zpwr-midi-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"Trill\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        10.0,\r\n        2.0,\r\n        0.5,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Mordent\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        40.0,\r\n        2.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "MIDI In",
+      "role": "midi"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 1,
+      "label": "MIDI Out"
+    }
+  ],
+  "nodeCount": 2
+}

@@ -1,0 +1,151 @@
+{
+  "zmod": 1,
+  "name": "Generative Cascade",
+  "category": "Sequencing",
+  "desc": "Generative engine, scale-locked, into an echo.",
+  "overview": "A generative note engine seeds the material, a scale block keeps it in key, and a MIDI echo throws rhythmic repeats. A self-playing patch that stays musical - set it going and it composes.",
+  "blocks": [
+    {
+      "type": "Generative",
+      "category": "Modulation",
+      "desc": "Probabilistic melodic random walk synced to a rate.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Rate",
+          "value": 4.0,
+          "min": 0.0,
+          "max": 11.0,
+          "def": 4.0,
+          "unit": ""
+        },
+        {
+          "name": "Range",
+          "value": 3.0,
+          "min": 1.0,
+          "max": 12.0,
+          "def": 3.0,
+          "unit": "st"
+        },
+        {
+          "name": "Low",
+          "value": 48.0,
+          "min": 0.0,
+          "max": 127.0,
+          "def": 48.0,
+          "unit": ""
+        },
+        {
+          "name": "High",
+          "value": 72.0,
+          "min": 0.0,
+          "max": 127.0,
+          "def": 72.0,
+          "unit": ""
+        },
+        {
+          "name": "Probability",
+          "value": 0.699999988079071,
+          "min": 0.0,
+          "max": 1.0,
+          "def": 0.699999988079071,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Scale",
+      "category": "Harmony",
+      "desc": "Quantizes incoming notes to the nearest degree of the chosen root and scale.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Root",
+          "value": 0.0,
+          "min": 0.0,
+          "max": 11.0,
+          "def": 0.0,
+          "unit": ""
+        },
+        {
+          "name": "Scale",
+          "value": 1.0,
+          "min": 0.0,
+          "max": 19.0,
+          "def": 1.0,
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "type": "Echo",
+      "category": "Sequencing",
+      "desc": "MIDI delay: repeats notes at a synced time with velocity feedback decay.",
+      "ins": [
+        "In A",
+        "In B",
+        "In C"
+      ],
+      "numIns": 3,
+      "params": [
+        {
+          "name": "Time",
+          "value": 250.0,
+          "min": 1.0,
+          "max": 2000.0,
+          "def": 250.0,
+          "unit": "ms"
+        },
+        {
+          "name": "Feedback",
+          "value": 0.5,
+          "min": 0.0,
+          "max": 0.949999988079071,
+          "def": 0.5,
+          "unit": ""
+        },
+        {
+          "name": "Repeats",
+          "value": 3.0,
+          "min": 1.0,
+          "max": 8.0,
+          "def": 3.0,
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "author": "MenkeTechnologies",
+  "license": "CC0",
+  "tags": [
+    "generative",
+    "echo",
+    "ambient"
+  ],
+  "host": "zpwr-midi-fx",
+  "patch": "{\r\n  \"v\": 4,\r\n  \"nodes\": [\r\n    {\r\n      \"type\": \"Generative\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        4.0,\r\n        3.0,\r\n        48.0,\r\n        72.0,\r\n        0.699999988079071,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Scale\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1000,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        0.0,\r\n        1.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    },\r\n    {\r\n      \"type\": \"Echo\",\r\n      \"in\": [\r\n        [\r\n          {\r\n            \"src\": 1001,\r\n            \"gain\": 1.0,\r\n            \"color\": \"\"\r\n          }\r\n        ],\r\n        [],\r\n        [],\r\n        []\r\n      ],\r\n      \"params\": [\r\n        250.0,\r\n        0.5,\r\n        3.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0,\r\n        0.0\r\n      ],\r\n      \"config\": \"\"\r\n    }\r\n  ],\r\n  \"mods\": [],\r\n  \"syncs\": [],\r\n  \"outputs\": [],\r\n  \"softKeyNames\": []\r\n}",
+  "inPorts": [
+    {
+      "src": 1,
+      "label": "MIDI In",
+      "role": "midi"
+    }
+  ],
+  "outPorts": [
+    {
+      "node": 2,
+      "label": "MIDI Out"
+    }
+  ],
+  "nodeCount": 3
+}

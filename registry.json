@@ -49,6 +49,36 @@
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/bit-smasher.zfxmod"
     },
     {
+      "slug": "chance-arp",
+      "name": "Chance Arp",
+      "author": "MenkeTechnologies",
+      "category": "Probability",
+      "tags": [
+        "chance",
+        "arp",
+        "generative"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Probabilistic note gate feeding an arpeggiator.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/chance-arp.zmfxmod"
+    },
+    {
+      "slug": "chord-arp",
+      "name": "Chord Arp",
+      "author": "MenkeTechnologies",
+      "category": "Sequencing",
+      "tags": [
+        "chord",
+        "arp",
+        "lead"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Turn single notes into chords, then arpeggiate them.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/chord-arp.zmfxmod"
+    },
+    {
       "slug": "clean-boost",
       "name": "Clean Boost",
       "author": "MenkeTechnologies",
@@ -61,6 +91,21 @@
       "host": "zpwr-fx",
       "desc": "Two-stage clean gain boost with a final trim.",
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/clean-boost.zfxmod"
+    },
+    {
+      "slug": "cluster-drone",
+      "name": "Cluster Drone",
+      "author": "MenkeTechnologies",
+      "category": "Harmony",
+      "tags": [
+        "cluster",
+        "drone",
+        "cinematic"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Symmetric tone clusters over a pedal root.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/cluster-drone.zmfxmod"
     },
     {
       "slug": "comp-limit",
@@ -153,6 +198,21 @@
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/duck-verb.zfxmod"
     },
     {
+      "slug": "euclid-pulse",
+      "name": "Euclid Pulse",
+      "author": "MenkeTechnologies",
+      "category": "Sequencing",
+      "tags": [
+        "euclid",
+        "rhythm",
+        "generative"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Euclidean rhythm gate into velocity shaping.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/euclid-pulse.zmfxmod"
+    },
+    {
       "slug": "exciter-polish",
       "name": "Exciter Polish",
       "author": "MenkeTechnologies",
@@ -197,6 +257,21 @@
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/formant-vox.zfxmod"
     },
     {
+      "slug": "game-of-life-melody",
+      "name": "Game of Life Melody",
+      "author": "MenkeTechnologies",
+      "category": "Sequencing",
+      "tags": [
+        "generative",
+        "automaton",
+        "melody"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Conway's Game of Life sequencer, scale-locked.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/game-of-life-melody.zmfxmod"
+    },
+    {
       "slug": "gated-slam",
       "name": "Gated Slam",
       "author": "MenkeTechnologies",
@@ -210,6 +285,21 @@
       "host": "zpwr-fx",
       "desc": "Hard compression into a gated reverb for big drums.",
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/gated-slam.zfxmod"
+    },
+    {
+      "slug": "generative-cascade",
+      "name": "Generative Cascade",
+      "author": "MenkeTechnologies",
+      "category": "Sequencing",
+      "tags": [
+        "generative",
+        "echo",
+        "ambient"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Generative engine, scale-locked, into an echo.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/generative-cascade.zmfxmod"
     },
     {
       "slug": "glass-filter",
@@ -241,6 +331,51 @@
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/grain-cloud.zfxmod"
     },
     {
+      "slug": "harmony-octave",
+      "name": "Harmony Octave",
+      "author": "MenkeTechnologies",
+      "category": "Harmony",
+      "tags": [
+        "harmony",
+        "octave",
+        "thick"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Fixed-interval harmonies doubled at the octave.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/harmony-octave.zmfxmod"
+    },
+    {
+      "slug": "humanized-chords",
+      "name": "Humanized Chords",
+      "author": "MenkeTechnologies",
+      "category": "Harmony",
+      "tags": [
+        "chord",
+        "humanize",
+        "feel"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Chords with humanized timing and velocity.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/humanized-chords.zmfxmod"
+    },
+    {
+      "slug": "keyboard-split",
+      "name": "Keyboard Split",
+      "author": "MenkeTechnologies",
+      "category": "Routing",
+      "tags": [
+        "split",
+        "performance",
+        "bass"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Split the keyboard and transpose each half.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/keyboard-split.zmfxmod"
+    },
+    {
       "slug": "lo-fi-tape",
       "name": "Lo-Fi Tape",
       "author": "MenkeTechnologies",
@@ -256,6 +391,36 @@
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/lo-fi-tape.zfxmod"
     },
     {
+      "slug": "mpe-unison",
+      "name": "MPE Unison",
+      "author": "MenkeTechnologies",
+      "category": "Routing",
+      "tags": [
+        "mpe",
+        "unison",
+        "expressive"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "MPE expression converted into a unison stack.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/mpe-unison.zmfxmod"
+    },
+    {
+      "slug": "scale-lock",
+      "name": "Scale Lock",
+      "author": "MenkeTechnologies",
+      "category": "Harmony",
+      "tags": [
+        "scale",
+        "quantize",
+        "key"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Quantize to a scale, then transpose in key.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/scale-lock.zmfxmod"
+    },
+    {
       "slug": "shimmer-wash",
       "name": "Shimmer Wash",
       "author": "MenkeTechnologies",
@@ -269,6 +434,51 @@
       "host": "zpwr-fx",
       "desc": "Plate reverb into a freeze verb for an endless wash.",
       "url": "https://menketechnologies.github.io/zpwr-modules/modules/shimmer-wash.zfxmod"
+    },
+    {
+      "slug": "strum-pad",
+      "name": "Strum Pad",
+      "author": "MenkeTechnologies",
+      "category": "Harmony",
+      "tags": [
+        "chord",
+        "strum",
+        "pad"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Strummed chords with velocity dynamics.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/strum-pad.zmfxmod"
+    },
+    {
+      "slug": "swing-accent",
+      "name": "Swing Accent",
+      "author": "MenkeTechnologies",
+      "category": "Sequencing",
+      "tags": [
+        "swing",
+        "accent",
+        "groove"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Add swing feel and rhythmic accents.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/swing-accent.zmfxmod"
+    },
+    {
+      "slug": "trill-ornament",
+      "name": "Trill Ornament",
+      "author": "MenkeTechnologies",
+      "category": "Sequencing",
+      "tags": [
+        "ornament",
+        "trill",
+        "classical"
+      ],
+      "license": "CC0",
+      "host": "zpwr-midi-fx",
+      "desc": "Baroque trill into a mordent ornament.",
+      "url": "https://menketechnologies.github.io/zpwr-modules/modules/trill-ornament.zmfxmod"
     },
     {
       "slug": "vocal-chain",
