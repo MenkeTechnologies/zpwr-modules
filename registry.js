@@ -106,8 +106,13 @@
   function pVal(p) { return fmtNum(p.value) + (p.unit ? ' ' + esc(p.unit) : ''); }
   function pRange(p) { return fmtNum(p.min) + ' … ' + fmtNum(p.max) + (p.unit ? ' ' + esc(p.unit) : ''); }
 
-  function chainHtml(blocks, isGen) {
-    var parts = (isGen ? [] : ['<span class="node io">In L</span>'])
+  // module file extension (.zfxmod / .zsynmod / .zmfxmod), taken from its URL
+  function fileExt(m) { var x = /\.[a-z]+$/.exec(m.url || ''); return x ? x[0] : '.zmod'; }
+  function inLabel(z) { return (z.inPorts && z.inPorts[0] && z.inPorts[0].label) || 'In L'; }
+  function isMidi(z) { return !!(z.inPorts && z.inPorts.some(function (p) { return p.role === 'midi'; })); }
+
+  function chainHtml(blocks, isGen, inName) {
+    var parts = (isGen ? [] : ['<span class="node io">' + esc(inName) + '</span>'])
       .concat(blocks.map(function (b) { return '<span class="node">' + esc(b.type) + '</span>'; }))
       .concat(['<span class="node io">Out</span>']);
     return parts.join('<span class="arrow">→</span>');
@@ -128,7 +133,7 @@
       '<div class="io-col"><h3>Inputs</h3>' + ins + '</div>' +
       '<div class="io-col"><h3>Outputs</h3>' + outs + '</div>' +
     '</div>' +
-    '<p class="meta">Open inputs are re-wired when you drop the module in; everything between the blocks is patched for you. Mono signal path.</p>';
+    '<p class="meta">Open inputs are re-wired when you drop the module in; everything between the blocks is patched for you. ' + (isMidi(z) ? 'MIDI note-stream path.' : 'Mono signal path.') + '</p>';
   }
 
   function blockHtml(b, i) {
@@ -172,7 +177,7 @@
           '<div class="p-meta">' + pills + '</div>' +
           '<div class="price detail-price"><span class="amt free">Free</span><span class="per">' + esc(m.license || 'CC0') + ' · ' + esc(m.author || 'unknown') + '</span></div>' +
           '<div class="buy-actions">' +
-            (m.url ? '<a class="btn btn-buy" href="' + esc(m.url) + '" download>Download .zfxmod ↗</a>' : '') +
+            (m.url ? '<a class="btn btn-buy" href="' + esc(m.url) + '" download>Download ' + esc(fileExt(m)) + ' ↗</a>' : '') +
             '<a class="btn btn-secondary" href="https://github.com/MenkeTechnologies/zpwr-modules">Registry</a>' +
           '</div>' +
         '</div>' +
@@ -189,8 +194,8 @@
       var html = '';
       html += '<section class="tutorial-section"><h2>DSP Overview</h2><p class="detail-overview">' + esc(z.overview || m.desc || '') + '</p></section>';
       var isGen = !(z.inPorts && z.inPorts.length);
-      html += '<section class="tutorial-section"><h2>Signal Chain</h2><div class="chain">' + chainHtml(blocks, isGen) + '</div>' +
-        '<p class="meta">' + (z.nodeCount || blocks.length) + ' blocks in series — ' + (isGen ? 'a free-running sound generator (no input); the last block feeds Out.' : 'In L feeds the first, the last feeds Out.') + '</p></section>';
+      html += '<section class="tutorial-section"><h2>Signal Chain</h2><div class="chain">' + chainHtml(blocks, isGen, inLabel(z)) + '</div>' +
+        '<p class="meta">' + (z.nodeCount || blocks.length) + ' blocks in series — ' + (isGen ? 'a free-running sound generator (no input); the last block feeds Out.' : esc(inLabel(z)) + ' feeds the first, the last feeds Out.') + '</p></section>';
       html += '<section class="tutorial-section"><h2>Inputs &amp; Outputs</h2>' + ioHtml(z, blocks) + '</section>';
       html += '<section class="tutorial-section"><h2>Blocks in this Module</h2>' + blocks.map(blockHtml).join('') + '</section>';
       html += '<section class="tutorial-section"><h2>Details</h2><dl class="det-table">' +
@@ -203,9 +208,9 @@
         '<dt>Slug</dt><dd>' + esc(m.slug || '-') + '</dd>' +
       '</dl></section>';
       html += '<section class="tutorial-section"><h2>How to use</h2><ul class="feature-list">' +
-        '<li>In <b>' + esc(m.host || 'the plugin') + '</b>, open <code>◈ MODULES → Registry</code> and import it, or download the <code>.zfxmod</code> and drop it in your module folder.</li>' +
+        '<li>In <b>' + esc(m.host || 'the plugin') + '</b>, open <code>◈ MODULES → Registry</code> and import it, or download the <code>' + esc(fileExt(m)) + '</code> and drop it in your module folder.</li>' +
         '<li>Click the module to splice it into the current patch — it expands into the ' + (z.nodeCount || blocks.length) + ' blocks above, fully wired.</li>' +
-        '<li>Open inputs (In L) are left unpatched so you can wire the module wherever you want in the signal path.</li>' +
+        (isGen ? '' : '<li>Open inputs (' + esc(inLabel(z)) + ') are left unpatched so you can wire the module wherever you want in the signal path.</li>') +
       '</ul></section>';
       document.getElementById('richSections').innerHTML = html;
     }).catch(function () {

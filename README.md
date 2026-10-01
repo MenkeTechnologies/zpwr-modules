@@ -72,10 +72,12 @@ A manifest PR, mirroring VCV's submission flow:
 ```jsonc
 { "registry": 1, "name": "zpwr-modules", "updated": "2026-06-20",
   "modules": [
-    { "slug": "barrys-delay", "name": "Barry's Delay", "author": "MenkeTechnologies",
-      "category": "Delay", "tags": ["delay", "mod"], "license": "CC0", "host": "zpwr-fx",
-      "desc": "Dynamic ducking delay.", "url": "https://.../modules/barrys-delay.zfxmod" } ] }
+    { "slug": "dub-echo", "name": "Dub Echo", "author": "MenkeTechnologies",
+      "category": "Delay", "tags": ["delay", "dub", "echo"], "license": "CC0", "host": "zpwr-fx",
+      "desc": "Filtered dub delay with feedback saturation.", "url": "https://.../modules/dub-echo.zfxmod" } ] }
 ```
+
+Each entry is read from the module file's own envelope (`name`, `author`, `category`, `tags`, `license`, `host`, `desc`); `slug` is derived from `name` and `url` from the file name. `host` is `zpwr-fx`, `zpwr-synth` or `zpwr-midi-fx`. The site's module / category / host totals are computed from this file at load time.
 
 ---
 
@@ -89,6 +91,8 @@ GitHub Pages on `main` (root). The registry is served at
 | Path | Role |
 | --- | --- |
 | `index.html` | cyberpunk registry browser (GitHub Pages landing page) |
+| `module.html` | per-module detail page (`module.html?id=<slug>`): DSP overview, signal chain, inputs/outputs, per-block params, read from the module file |
+| `registry.js` / `fzf.js` | storefront grid, category filters, fzf search and the detail-page renderer |
 | `registry.json` | the flat index the plugins + the browser fetch |
 | `modules/` | published module files (`.zfxmod` / `.zsynmod` / `.zmfxmod`) |
 | `scripts/gen_registry.py` | rebuilds `registry.json` from `modules/` |
