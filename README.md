@@ -93,6 +93,7 @@ GitHub Pages on `main` (root). The registry is served at
 | `index.html` | cyberpunk registry browser (GitHub Pages landing page) |
 | `module.html` | per-module detail page (`module.html?id=<slug>`): DSP overview, signal chain, inputs/outputs, per-block params, read from the module file |
 | `registry.js` / `fzf.js` | storefront grid, category filters, fzf search and the detail-page renderer |
+| `registry.css` / `store.css` / `tutorial.css` / `hud-static.css` / `hud-theme.js` | site styling and the HUD theme switcher |
 | `registry.json` | the flat index the plugins + the browser fetch |
 | `modules/` | published module files (`.zfxmod` / `.zsynmod` / `.zmfxmod`) |
 | `scripts/gen_registry.py` | rebuilds `registry.json` from `modules/` |
