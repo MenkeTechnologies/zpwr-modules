@@ -61,7 +61,7 @@ A module is a selection of patch blocks (with their internal cables, mod routes 
 
 A manifest PR, mirroring VCV's submission flow:
 
-1. Add your `modules/<name>.<ext>` file (export it from the plugin).
+1. Add your `modules/<name>.<ext>` file (export it from the plugin; the file must be valid JSON, unparsable files are skipped with a message).
 2. `python3 scripts/gen_registry.py` - rebuilds `registry.json` from the `modules/` tree.
 3. Open a PR. Once merged and Pages redeploys, every plugin sees it on the next **Refresh**.
 
@@ -70,14 +70,14 @@ A manifest PR, mirroring VCV's submission flow:
 ## [0x04] registry.json
 
 ```jsonc
-{ "registry": 1, "name": "zpwr-modules", "updated": "2026-06-20",
+{ "registry": 1, "name": "zpwr-modules", "updated": "<UTC date of generation>",
   "modules": [
     { "slug": "dub-echo", "name": "Dub Echo", "author": "MenkeTechnologies",
       "category": "Delay", "tags": ["delay", "dub", "echo"], "license": "CC0", "host": "zpwr-fx",
       "desc": "Filtered dub delay with feedback saturation.", "url": "https://.../modules/dub-echo.zfxmod" } ] }
 ```
 
-Each entry is read from the module file's own envelope (`name`, `author`, `category`, `tags`, `license`, `host`, `desc`); `slug` is derived from `name` and `url` from the file name. `host` is `zpwr-fx`, `zpwr-synth` or `zpwr-midi-fx`. The site's module / category / host totals are computed from this file at load time.
+`updated` is the UTC date the generator ran. Each entry is read from the module file's own envelope (`name`, `author`, `category`, `tags`, `license`, `host`, `desc`); `slug` is derived from `name` and `url` from the file name. `host` is `zpwr-fx`, `zpwr-synth` or `zpwr-midi-fx`. The site's module / category / host totals are computed from this file at load time.
 
 ---
 
@@ -95,7 +95,7 @@ GitHub Pages on `main` (root). The registry is served at
 | `registry.js` / `fzf.js` | storefront grid, category filters, fzf search and the detail-page renderer |
 | `registry.css` / `store.css` / `tutorial.css` / `hud-static.css` / `hud-theme.js` | site styling and the HUD theme switcher |
 | `registry.json` | the flat index the plugins + the browser fetch |
-| `modules/` | published module files (`.zfxmod` / `.zsynmod` / `.zmfxmod`) |
+| `modules/` | published module files (`.zfxmod` / `.zsynmod` / `.zmfxmod`; the generator also indexes legacy `.zmod`) |
 | `scripts/gen_registry.py` | rebuilds `registry.json` from `modules/` |
 
 ---
